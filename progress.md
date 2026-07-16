@@ -42,3 +42,4 @@
 - 新增并观察场景选择器隐藏与 GitHub 入口测试按预期失败，随后以 CSS 隐藏原生 `.wb-scene-tabs`，不破坏 WorkBuddy DOM。
 - 右上角主题栏末尾新增本地内联 SVG GitHub 图标，固定链接到 `buzhangsaner/workbuddy-skin`，包含安全新窗口属性、可访问标签、悬停和键盘焦点样式；定向 7 项测试通过。
 - 安装 v0.4.0 到真实 WorkBuddy 后，确认 10 个主题按钮加 1 个 GitHub 图标、场景选择器 0×0 隐藏、图标真实鼠标命中、当前主题不变且页面无横向溢出；37 项全量测试和 Node 语法检查通过。
+- 初始化本地 `main`，排除 22MB QA 截图，确认无 100MB 以上文件和常见密钥；通过 GitHub 官方设备授权登录 `buzhangsaner`，已将首个提交 `2b00dcd` 推送到 `buzhangsaner/workbuddy-skin`。

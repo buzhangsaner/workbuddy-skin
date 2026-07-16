@@ -33,7 +33,7 @@
 - [x] 先写并观察“隐藏场景选择器”和 GitHub 入口测试失败
 - [x] 隐藏场景选择器并加入安全的右上角 GitHub 图标链接
 - [x] 安装到 WorkBuddy 并完成实机点击、布局和完整回归
-- [ ] 初始化 Git 仓库、检查大文件并推送到 `buzhangsaner/workbuddy-skin`
+- [x] 初始化 Git 仓库、检查大文件并推送到 `buzhangsaner/workbuddy-skin`
 
 ## 关键决策
 
@@ -82,3 +82,7 @@
 | `git ls-remote` 被本机错误代理 `127.0.0.1:58001”` 拦截 | 不修改用户全局配置，后续仅对本次 Git 命令显式禁用该代理后重试 |
 | 首次测试补丁因主题栏测试末尾正则上下文不完全匹配而未应用 | 不重复原补丁；先读取文件尾部精确上下文，再拆分为两个小补丁 |
 | 主题栏测试追加补丁仍被反斜杠正则上下文拒绝 | 改用纯追加式新测试文件，避免继续依赖含多重转义的补丁定位 |
+| 首次 GitHub 推送在 Windows Schannel TLS 握手阶段失败 | 本地提交完整保留；下一次仅对单条命令改用 OpenSSL 后端，若仍失败再检查 GitHub CLI/SSH 登录状态 |
+| OpenSSL 重试连接成功但 GitHub 返回 403 | 当前 HTTPS 凭据是 `buzhangsan`，无权写入 `buzhangsaner/workbuddy-skin`；检查 GitHub CLI 与 SSH 是否有目标账号凭据，不再重复该 HTTPS 推送 |
+| `gh auth login --web` 被坏代理改写为无效主机 `xn--http-996a` | 仅对下一次授权进程清除 HTTP/HTTPS/ALL proxy 环境变量后重新发起，不修改用户全局设置 |
+| GitHub CLI 最初只有失效的 `buzhangsan` 凭据且 SSH 无密钥 | 通过 GitHub 官方设备授权登录 `buzhangsaner`，清除单次进程代理后成功推送 `main`，未改全局代理 |
