@@ -61,5 +61,22 @@ test('GitHub Actions builds both native packages and publishes version tags', as
   assert.match(workflow, /packaging\/macos\/build-dmg\.sh/);
   assert.match(workflow, /LICENSE\.node\.txt/);
   assert.match(workflow, /upload-artifact@v4/);
+  assert.match(workflow, /GH_REPO:\s*\$\{\{ github\.repository \}\}/);
   assert.match(workflow, /gh release create/);
+});
+
+test('release metadata stays aligned with the package version', async () => {
+  const [pkgSource, renderer, iss, plist, workflow] = await Promise.all([
+    read('package.json'),
+    read('assets/renderer-inject.js'),
+    read('packaging/windows/workbuddy-dream-skin.iss'),
+    read('packaging/macos/Info.plist'),
+    read('.github/workflows/release.yml'),
+  ]);
+  const { version } = JSON.parse(pkgSource);
+  assert.equal(version, '0.5.1');
+  assert.match(renderer, new RegExp(`VERSION = '${version.replaceAll('.', '\\.')}'`));
+  assert.match(iss, new RegExp(`#define AppVersion "${version.replaceAll('.', '\\.')}"`));
+  assert.match(plist, new RegExp(`<string>${version.replaceAll('.', '\\.')}<\\/string>`));
+  assert.match(workflow, new RegExp(`else \\{ '${version.replaceAll('.', '\\.')}' \\}`));
 });

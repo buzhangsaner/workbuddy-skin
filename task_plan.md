@@ -106,3 +106,7 @@
 | 全量回归仍要求启动脚本直接调用裸 `node` | 新发行架构必须调用已解析的 `$Node` 才能使用内置运行时；更新旧断言为 `& $Node @ApplyArgs`，可逆性与退出码检查保持不变 |
 | v0.5 实机中收起/场景恢复通过，但黑金标题规则未改变计算色 | 暂不扩大覆盖范围；检查主题属性、节点 `matches()` 和注入样式规则，定位选择器为何未命中 |
 | 本地 Info.plist 校验脚本引用未安装的 `@xmldom/xmldom` | 不新增发行依赖；改用 Python 标准库 XML 解析器完成同等只读校验 |
+| tag 流水线的 Release job 未 checkout，`gh release create` 无法从 `.git` 推断仓库 | 给发布步骤显式传入 `GH_REPO=${{ github.repository }}`，并增加回归断言；当前 v0.5.0 复用已构建产物发布 |
+| 首次 CDP 点击产物的临时检查器对响应结构解包两次 | 保留页面状态，修正一次性检查器的响应处理后重试，成功定位 `.detail-panel` 与 `.artifact-content` |
+| `npm run check` 在当前受限 Git Bash 中转调系统 shell 被拒绝 | 拆分执行同等的两个 `node --check` 命令，均以退出码 0 通过；CI 的标准 Ubuntu runner 仍执行原脚本 |
+| 旧版后台守护进程在实机 QA 中回写旧 CSS，且产物卡背景有过渡动画 | 在同一 CDP 求值中直接加载待发布 CSS，并临时关闭动画读取最终计算样式，确认产物卡为黑金深色而非浅灰 |

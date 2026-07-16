@@ -44,3 +44,8 @@
 - 实机 DOM 定位到会话标题节点为 `span[class*="_title_"]`，计算色固定 `rgba(0,0,0,.9)`；时间节点为 `span[class*="_time_"]`，固定 `rgba(0,0,0,.3)`。二者覆盖父级 `.conversation-agent-card` 的主题色，黑金主题需在侧栏范围内分别提升为暖白和低一级金灰。
 - 进一步检查 CSSOM 后确认并非注入失败：主题规则已命中且带 `!important`，但 WorkBuddy 自带的标题规则同时包含三个 `:not(...)` 属性选择器，特异性高于当前主题选择器，因此计算色仍被原生变量覆盖。修复应直接覆盖侧栏文字变量，或使用同等结构且更高特异性的选择器。
 - 实机验证覆盖 `--wb-todo-menu-text-default` 与 `--wb-todo-menu-text-heading` 后，黑金标题计算色为 `rgb(244,232,200)`，时间为 `rgba(229,198,128,.68)`。工具栏 CSS 已移动到侧栏右侧 10px，但旧 DOM 因 signature 仍为 `collapse-v1` 未重建，导致新按钮顺序只对首次安装生效；需提升结构签名触发无缓存热升级。
+- 项目/空间详情实机 DOM 的主画布并不是 `.main-content--chat`，而是 `.main-content--projects > .workbuddy-collab > .project-detail-view`；三层分别固定 `#fafafa/#fff/#fff`。当前 `routeName()` 只看空的 `location.hash`，错误标成 `chat`，使首页透明层规则也误套到项目页。
+- 项目消息正文由 `[class*="_assistantTextContent_"] > .cb-markdown` 固定为深灰，表格又单独固定白底/浅灰表头；产物预览位于 `.detail-panel > .artifact-content`，面板本身固定白底。必须同时覆盖画布、消息 Markdown、表格和产物抽屉，不能只把最外层改黑。
+- 选中的空间任务卡含哈希类 `[class*="_selected_"]`，原生背景为 `rgb(230,230,230)`；黑金侧栏需要独立深金选中态，否则会出现白条和浅色文字。
+- v0.5.1 源码直接注入实机后，项目画布三层均为 `rgb(17,17,15)`，输入区和产物卡均为 `rgb(24,23,20)`，文字为 `rgb(244,232,200)`；此前产物卡短暂显示浅灰是 WorkBuddy 背景过渡的起始帧，禁用动画读取最终计算样式后确认覆盖生效。
+- 已增加项目页 DOM 路由识别和画布、Markdown、表格、产物抽屉、输入区、消息气泡、选中任务卡的回归测试；发行元数据也增加 v0.5.1 一致性门禁。

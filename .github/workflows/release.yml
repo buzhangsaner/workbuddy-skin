@@ -38,7 +38,7 @@ jobs:
       - name: Build Windows installer
         shell: pwsh
         run: |
-          $Version = if ($env:GITHUB_REF -like 'refs/tags/*') { "${{ github.ref_name }}".TrimStart('v') } else { '0.5.0' }
+          $Version = if ($env:GITHUB_REF -like 'refs/tags/*') { "${{ github.ref_name }}".TrimStart('v') } else { '0.5.1' }
           & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DAppVersion=$Version" packaging/windows/workbuddy-dream-skin.iss
       - uses: actions/upload-artifact@v4
         with:
@@ -80,4 +80,5 @@ jobs:
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: gh release create "$GITHUB_REF_NAME" dist/* --title "WorkBuddy Dream Skin $GITHUB_REF_NAME" --generate-notes

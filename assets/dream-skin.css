@@ -6,6 +6,10 @@
   --wb-dream-glass: color-mix(in srgb, var(--wb-dream-surface) 88%, transparent);
   --wb-dream-line: color-mix(in srgb, var(--wb-dream-secondary) 34%, transparent);
   --wb-dream-shadow: 0 18px 55px color-mix(in srgb, var(--wb-dream-accent) 16%, transparent);
+  --wb-dream-canvas: color-mix(in srgb, var(--wb-dream-surface) 94%, white);
+  --wb-dream-panel: color-mix(in srgb, var(--wb-dream-surface) 88%, white);
+  --wb-dream-raised: color-mix(in srgb, var(--wb-dream-surface) 82%, white);
+  --wb-dream-muted-ink: color-mix(in srgb, var(--wb-dream-ink) 66%, var(--wb-dream-surface));
   --vscode-editor-background: var(--wb-dream-surface);
   --vscode-editor-foreground: var(--wb-dream-ink);
   --vscode-focusBorder: var(--wb-dream-accent);
@@ -175,6 +179,11 @@ html.workbuddy-dream-skin .conversation-agent-card:hover {
   background: color-mix(in srgb, var(--wb-dream-secondary) 11%, white) !important;
 }
 
+html.workbuddy-dream-skin .conversation-agent-card[class*="_selected_"] {
+  border-color: color-mix(in srgb, var(--wb-dream-accent) 34%, transparent) !important;
+  background: linear-gradient(100deg, color-mix(in srgb, var(--wb-dream-accent) 16%, var(--wb-dream-panel)), var(--wb-dream-panel)) !important;
+}
+
 html.workbuddy-dream-skin .conversation-section-label,
 html.workbuddy-dream-skin .conversation-item,
 html.workbuddy-dream-skin .conversation-agent-card {
@@ -201,6 +210,158 @@ html.workbuddy-dream-skin .user-menu-trigger {
   border: 1px solid transparent !important;
   border-radius: 13px !important;
   background: rgba(255,255,255,.36) !important;
+}
+
+/* Projects/spaces use a separate WorkBuddy canvas and artifact drawer. */
+html.workbuddy-dream-skin .main-content--projects,
+html.workbuddy-dream-skin .main-content--projects .workbuddy-collab,
+html.workbuddy-dream-skin .main-content--projects .project-detail-view {
+  background: var(--wb-dream-canvas) !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .workbuddy-topbar,
+html.workbuddy-dream-skin .main-content--projects .detail-panel {
+  border-color: var(--wb-dream-line) !important;
+  background: color-mix(in srgb, var(--wb-dream-panel) 94%, transparent) !important;
+  color: var(--wb-dream-ink) !important;
+  backdrop-filter: blur(16px) saturate(1.06);
+}
+
+html.workbuddy-dream-skin .main-content--projects .detail-header {
+  border-bottom: 1px solid var(--wb-dream-line) !important;
+  background: var(--wb-dream-panel) !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .detail-header .cb-tabs__item,
+html.workbuddy-dream-skin .main-content--projects .detail-header .cb-tabs__label {
+  color: var(--wb-dream-muted-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .detail-header .cb-tabs__item[aria-selected="true"],
+html.workbuddy-dream-skin .main-content--projects .detail-header .cb-tabs__item--active {
+  background: var(--wb-dream-raised) !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__left,
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__body,
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__main,
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__content,
+html.workbuddy-dream-skin .main-content--projects .group-messages,
+html.workbuddy-dream-skin .main-content--projects [class*="_chatMessage_"],
+html.workbuddy-dream-skin .main-content--projects [class*="_assistantTextContent_"],
+html.workbuddy-dream-skin .main-content--projects [class*="_userMessageText_"] {
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .task-chat-topbar-breadcrumb__path,
+html.workbuddy-dream-skin .main-content--projects .task-chat-topbar-breadcrumb__seg,
+html.workbuddy-dream-skin .main-content--projects .task-chat-topbar-breadcrumb__sep {
+  color: var(--wb-dream-muted-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .task-chat-topbar-breadcrumb__title,
+html.workbuddy-dream-skin .main-content--projects .workbuddy-topbar-options,
+html.workbuddy-dream-skin .main-content--projects .workbuddy-topbar-actions {
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .detail-panel-container,
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__detail-panel,
+html.workbuddy-dream-skin .main-content--projects .detail-layout,
+html.workbuddy-dream-skin .main-content--projects .detail-layout__content,
+html.workbuddy-dream-skin .main-content--projects .detail-main,
+html.workbuddy-dream-skin .main-content--projects .detail-main__body,
+html.workbuddy-dream-skin .main-content--projects .artifact-body,
+html.workbuddy-dream-skin .main-content--projects .artifact-content {
+  background: transparent !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .cb-markdown {
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .cb-markdown :where(h1, h2, h3, h4, h5, h6, p, li, strong, em, span) {
+  color: inherit !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .cb-markdown a {
+  color: var(--wb-dream-accent) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .cb-markdown table {
+  border-color: var(--wb-dream-line) !important;
+  background: var(--wb-dream-panel) !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .cb-markdown :where(th, td) {
+  border-color: var(--wb-dream-line) !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .cb-markdown th {
+  background: var(--wb-dream-raised) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .cb-markdown :where(pre, code) {
+  border-color: var(--wb-dream-line) !important;
+  background: var(--wb-dream-raised) !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__input-area [class*="_container_"],
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__input-area [class*="_mainArea_"],
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__input-area [class*="_content_"] {
+  border-color: var(--wb-dream-line) !important;
+  background: var(--wb-dream-panel) !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__input-area [contenteditable="true"],
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__input-area [class*="_editable_"] {
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__input-area [contenteditable="true"]::before {
+  color: var(--wb-dream-muted-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__input-area button,
+html.workbuddy-dream-skin .main-content--projects .project-detail-view__input-area svg {
+  color: var(--wb-dream-muted-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .collab-message__bubble {
+  border: 1px solid var(--wb-dream-line) !important;
+  background: var(--wb-dream-raised) !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .collab-message__bubble :where(div, p, span) {
+  color: inherit !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .artifact-slot-panel__card {
+  border: 1px solid var(--wb-dream-line) !important;
+  background: var(--wb-dream-panel) !important;
+  background-color: var(--wb-dream-panel) !important;
+  background-image: none !important;
+  color: var(--wb-dream-ink) !important;
+}
+
+html.workbuddy-dream-skin .main-content.main-content--projects .workbuddy-collab .project-detail-view .artifact-slot-panel__grid .artifact-slot-panel__card {
+  background: var(--wb-dream-panel) !important;
+  background-color: var(--wb-dream-panel) !important;
+  background-image: none !important;
+}
+
+html.workbuddy-dream-skin .main-content--projects .artifact-slot-panel__card-main,
+html.workbuddy-dream-skin .main-content--projects .artifact-slot-panel__card :where(div, span, button, svg) {
+  color: var(--wb-dream-ink) !important;
 }
 
 html.workbuddy-dream-skin .wb-scene-tabs__pill {
@@ -920,6 +1081,12 @@ html[data-wb-dream-theme="black-gold-stage"] .user-menu-trigger {
   color: #f4e8c8 !important;
 }
 
+html[data-wb-dream-theme="black-gold-stage"] .conversation-agent-card[class*="_selected_"] {
+  border-color: rgba(209,170,98,.46) !important;
+  background: linear-gradient(100deg, rgba(209,170,98,.22), rgba(35,31,24,.92)) !important;
+  color: #f4e8c8 !important;
+}
+
 html[data-wb-dream-theme="black-gold-stage"] .teams-container,
 html[data-wb-dream-theme="black-gold-stage"] [class^="_gridViewItem_"],
 html[data-wb-dream-theme="black-gold-stage"] [class*=" _gridViewItem_"],
@@ -928,6 +1095,81 @@ html[data-wb-dream-theme="black-gold-stage"] .teams-content-wrapper,
 html[data-wb-dream-theme="black-gold-stage"] .main-content--welcome {
   background: #11110f !important;
   color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects,
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .workbuddy-collab,
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .project-detail-view {
+  background: #11110f !important;
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .workbuddy-topbar,
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .detail-panel {
+  border-color: rgba(209,170,98,.28) !important;
+  background: rgba(20,19,16,.96) !important;
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .detail-header {
+  border-color: rgba(209,170,98,.28) !important;
+  background: #181714 !important;
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .detail-header .cb-tabs__item,
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .detail-header .cb-tabs__label {
+  color: rgba(244,232,200,.72) !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects [class*="_assistantTextContent_"],
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .artifact-content,
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .cb-markdown,
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .cb-markdown :where(h1, h2, h3, h4, h5, h6, p, li, strong, em, span) {
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .cb-markdown table {
+  border-color: rgba(209,170,98,.30) !important;
+  background: #181714 !important;
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .cb-markdown :where(th, td) {
+  border-color: rgba(209,170,98,.26) !important;
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .cb-markdown th {
+  background: #211e18 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .project-detail-view__input-area [class*="_container_"],
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .project-detail-view__input-area [class*="_mainArea_"],
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .project-detail-view__input-area [class*="_content_"] {
+  border-color: rgba(209,170,98,.36) !important;
+  background: #181714 !important;
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .collab-message__bubble {
+  border-color: rgba(209,170,98,.34) !important;
+  background: #211e18 !important;
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"] .main-content--projects .artifact-slot-panel__card {
+  border-color: rgba(209,170,98,.34) !important;
+  background: #181714 !important;
+  background-color: #181714 !important;
+  background-image: none !important;
+  color: #f4e8c8 !important;
+}
+
+html[data-wb-dream-theme="black-gold-stage"].workbuddy-dream-skin .main-content.main-content--projects .workbuddy-collab .project-detail-view .artifact-slot-panel__grid .artifact-slot-panel__card {
+  background: #181714 !important;
+  background-color: #181714 !important;
+  background-image: none !important;
 }
 
 html[data-wb-dream-theme="black-gold-stage"] .wb-home-page,

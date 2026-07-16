@@ -8,7 +8,7 @@
   const CUSTOM_STORAGE_KEY = 'workbuddy-dream-custom-theme-v1';
   const SWITCHER_COLLAPSED_KEY = 'workbuddy-dream-switcher-collapsed-v1';
   const GITHUB_URL = 'https://github.com/buzhangsaner/workbuddy-skin/';
-  const VERSION = '0.5.0';
+  const VERSION = '0.5.1';
   const NATIVE_ID = 'native';
   const CUSTOM_ID = 'custom';
   const themeMap = new Map(themes.map(theme => [theme.id, theme]));
@@ -116,8 +116,15 @@
   if (forceSelection) writeSelection(currentSelection);
 
   const routeName = () => {
+    if (document.querySelector('.main-content--projects')) return 'projects';
+    if (document.querySelector('.main-content--chat, .main-content--welcome')) return 'chat';
+    const main = document.querySelector('.main-content');
+    const classRoute = [...(main?.classList || [])]
+      .find(name => name.startsWith('main-content--'))
+      ?.slice('main-content--'.length);
+    if (classRoute) return classRoute;
     const route = location.hash.replace(/^#\/?/, '').split(/[/?]/)[0] || 'chat';
-    return ['chat', 'tasks', 'plugins', 'terminal', 'canvas', 'editor', 'changes', 'settings'].includes(route) ? route : 'other';
+    return ['chat', 'projects', 'tasks', 'plugins', 'terminal', 'canvas', 'editor', 'changes', 'settings'].includes(route) ? route : 'other';
   };
 
   const element = (tag, className, text) => {
