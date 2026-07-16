@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "fiona-starlight",
+  "name": "Fiona Starlight",
+  "tagline": "让灵感在星光里发生",
+  "quote": "MAKE SOMETHING WONDERFUL",
+  "image": "background.png",
+  "colors": {
+    "accent": "#a142f4",
+    "secondary": "#ff73bd",
+    "surface": "#fff5fa",
+    "ink": "#2a1752"
+  }
+}

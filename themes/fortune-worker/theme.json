@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "fortune-worker",
+  "name": "财神打工",
+  "tagline": "代码写得好，效率与好运一起到",
+  "quote": "FORTUNE ONLINE",
+  "image": "hero-clean-v2.png",
+  "colors": { "accent": "#c73522", "secondary": "#e4ae34", "surface": "#fff7e5", "ink": "#4c271b" }
+}

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "red-white-sci-fi",
+  "name": "红白科幻",
+  "tagline": "用先进工具，为每个人创造更多可能",
+  "quote": "FUTURE READY",
+  "image": "hero-clean-v2.png",
+  "colors": { "accent": "#d9272e", "secondary": "#ff6b6b", "surface": "#fff3f3", "ink": "#271b1b" }
+}

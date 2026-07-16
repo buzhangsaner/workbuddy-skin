@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "fiona-sit-limited",
+  "name": "Fiona Sit Limited",
+  "tagline": "与薛凯琪一起，把灵感写进每一天",
+  "quote": "STAY SWEET, FIONA",
+  "image": "hero-clean-v2.png",
+  "colors": {
+    "accent": "#8a38f5",
+    "secondary": "#ff5fba",
+    "surface": "#fff1f8",
+    "ink": "#35135d"
+  }
+}

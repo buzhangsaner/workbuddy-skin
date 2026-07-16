@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "black-gold-stage",
+  "name": "舞台黑金",
+  "tagline": "让代码与灵感在舞台上发光",
+  "quote": "STAGE LIGHT",
+  "image": "hero-clean-v2.png",
+  "colors": { "accent": "#d1aa62", "secondary": "#8e6c3f", "surface": "#11110f", "ink": "#f4e8c8" }
+}

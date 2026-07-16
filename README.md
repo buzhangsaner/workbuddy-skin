@@ -1,0 +1,75 @@
+# WorkBuddy Dream Skin
+
+[![GitHub](https://img.shields.io/badge/GitHub-buzhangsaner%2Fworkbuddy--skin-181717?logo=github)](https://github.com/buzhangsaner/workbuddy-skin/)
+
+将 Codex Dream Skin 的 8 套原版视觉方案适配到 Windows 与 macOS 版 WorkBuddy。每套主题都会同步替换背景、左侧菜单、活动项、场景按钮、快捷按钮、输入框、发送按钮和整体色板；图片素材只作纯背景，不包含伪造菜单或文字。
+
+它通过 WorkBuddy 自带的本机调试接口注入样式，不修改 `app.asar`，随时可以完整恢复原版。
+
+## 内置主题
+
+| 主题 | 风格 |
+|---|---|
+| 粉系定制 | 樱粉、柔光、玫瑰 |
+| 财神打工 | 中国红、鎏金、财神 |
+| 红白科幻 | 红白、高对比、科幻 |
+| 清透定制 | 鼠尾草绿、米白、纸鹤 |
+| 灵感小宇宙 | 青绿、珊瑚橙、创意拼贴 |
+| 紫夜限定 | 蓝紫、星空、夜色 |
+| 初音未来 | 青蓝、粉色、未来感 |
+| 舞台黑金 | 深黑、鎏金、舞台灯光 |
+
+## Windows 使用
+
+1. 使用 PowerShell 运行 `scripts/install-workbuddy-dream-skin.ps1`。
+2. 启动后直接点击 WorkBuddy 右上角的主题胶囊，立即切换，无需重启。
+3. 点击右上角“自定义”打开内置编辑器，可修改背景图、颜色、主题名称和主标题；编辑时实时预览，点击“保存主题”后永久保留。
+4. 点击主题栏末尾的 GitHub 图标可打开项目仓库。
+5. 欢迎页原有的三个场景选择按钮在 Dream Skin 下默认隐藏，让主视觉和功能卡保持干净。
+6. 点击右上角“恢复原主题”可暂时显示 WorkBuddy 原生外观；胶囊栏仍会保留。
+7. 双击桌面的 `Restore WorkBuddy` 可彻底停止注入并移除胶囊栏。
+
+右上角的选择会自动保存；下次从 `WorkBuddy Dream Skin` 启动时继续使用上次主题。桌面的 `Choose WorkBuddy Theme` 保留为备用选择器，可明确覆盖当前选择。
+
+## 皮肤编辑器
+
+推荐直接点击 WorkBuddy 右上角“自定义”：
+
+- 支持 PNG、JPG、WebP，本机自动缩放并压缩，不会上传。
+- 颜色、名称和标题修改后立即预览；点击“取消”会恢复进入编辑器前的主题。
+- 点击“保存主题”后写入本机存储，关闭或重启 WorkBuddy 后仍会恢复。
+
+桌面版编辑器继续作为主题包制作工具：
+
+双击桌面的 `Dream Skin Editor`，可实时调整颜色、圆角、玻璃透明度和背景图。`Export Theme` 会导出安全的 `theme.json`；请将它与所选背景图放在同一主题目录。
+
+主题只接受固定字段、十六进制颜色和安全图片文件名，不执行自定义 JavaScript。
+
+## 命令行
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\switch-workbuddy-theme.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-workbuddy-dream-skin.ps1 -ThemeId purple-night -RestartExisting
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify-workbuddy-dream-skin.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\restore-workbuddy-dream-skin.ps1
+```
+
+Windows 版已在 WorkBuddy 5.2.6 验证，要求 Node.js 22 或更高版本。调试端口只使用 `127.0.0.1:9336`，注入器还会校验 WorkBuddy 的页面标题、文件地址和 DOM 指纹。
+
+## macOS
+
+在 Terminal 中执行：
+
+```bash
+chmod +x scripts/*-macos.sh
+./scripts/install-workbuddy-dream-skin-macos.sh
+```
+
+安装后桌面会出现：
+
+- `Choose WorkBuddy Theme.command`：从 8 套主题中选择并实时应用
+- `WorkBuddy Dream Skin.command`：启动换肤并继续使用上次选择
+- `Restore WorkBuddy.command`：恢复原版
+- `Dream Skin Editor.command`：打开皮肤编辑器
+
+macOS 启动后同样可使用 WorkBuddy 右上角的 10 个胶囊按钮即时切换、使用“自定义”内置编辑器和 GitHub 图标入口。默认读取 `/Applications/WorkBuddy.app`，独立安装目录为 `~/Library/Application Support/WorkBuddyDreamSkin/app`，要求 Node.js 22 或更高版本。

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "sage-clear",
+  "name": "清透定制",
+  "tagline": "让思路留白，让创造自然发生",
+  "quote": "CLEAR MIND",
+  "image": "hero-clean-v2.png",
+  "colors": { "accent": "#899b62", "secondary": "#d2b879", "surface": "#f8f7f0", "ink": "#33402b" }
+}

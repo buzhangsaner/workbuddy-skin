@@ -1,0 +1,36 @@
+# Findings
+
+- 本机 WorkBuddy 版本为 5.2.6，Electron 37.10.3，Chromium 138。
+- 主界面由 `resources/app.asar/renderer/index.html` 加载。
+- 主窗口启用 `contextIsolation: true`、`sandbox: true`、`nodeIntegration: false`。
+- 主进程原生支持环境变量 `WORKBUDDY_REMOTE_DEBUGGING_PORT`。
+- WorkBuddy 使用单实例锁；要开启 CDP 必须先彻底退出当前实例。
+- Renderer 使用 Hash 路由，包括 chat、tasks、plugins、terminal、canvas、settings 等。
+- UI 广泛使用 VS Code CSS 变量与 Tailwind 类，主题应优先覆盖变量，减少深层 DOM 依赖。
+- 进程命令行可能包含运行时授权参数，任何日志和状态文件都不得记录完整命令行。
+- 参考图的核心交互是右上角悬浮胶囊按钮组：当前主题高亮，其他主题单击即可切换，并提供“恢复原主题”。
+- WorkBuddy Renderer 启用了隔离与沙箱，右上角控件不能直接调用 Node 或读取目录；主题目录与安全图片地址必须由 Injector 注入。
+- 8 个中文主题名加“恢复原主题”在 1200px 主窗口可组成单行紧凑胶囊栏；窄窗口需要横向滚动或折叠，不能遮挡窗口菜单。
+- 当前项目目录不是 Git 仓库，无法创建 Git worktree 或提交设计文档；本次继续在独立项目目录内修改并用完整回归测试隔离风险。
+- 实机 Renderer 已验证可直接加载经过校验的本地 `file://` 主题图片（紫夜素材返回 1672×941），因此切换器只需注入小型目录和安全 URL，不必把 8 张图片全部转成约 20MB Base64 载荷。
+- 现有 Renderer 每次守护重注入都会无条件应用启动主题；新实现必须区分首次强制选择与后续重注入，否则界面点击结果会在 4 秒后被覆盖。
+- 原版参考图的主视觉覆盖整个右侧工作区，而当前实现只占顶部约 210px；当前标题、场景按钮、快捷操作和输入框集中在页面中部，下面留下超过三分之一空白。
+- 原版构图顺序为：右上主题栏 → 左中品牌/主标题/说明/状态胶囊 → 中下四张功能卡 → 底部宽输入区。主题图与内容共享同一整页背景，不使用顶部横幅切割。
+- 高保真改造应保留 WorkBuddy 原生场景按钮、快捷操作和输入框，只重新定位与包装视觉；自定义标题区可以作为 `pointer-events:none` 的装饰内容注入。
+- 1200×800 实机稳定布局基线：主内容 `.main-content--welcome` 为 x264/y30/w936/h770；`.wb-home-page` 为 x332/y193/w800/h500。
+- 可直接映射的稳定容器包括 `.wb-home-header`、`.wb-scene-tabs`、`.wb-home-composer`、`.quick-actions`、`.quick-actions__list`、`.wb-home-composer__input-slot`，无需依赖哈希 class。
+- 当前原生组件纵向位置为标题 y225、场景 y337、快捷操作 y421、输入区 y465；原版目标约为品牌区 y170、功能卡 y500、Composer y650，并让背景覆盖 y30–800。
+- 主题现有 `tagline` 和 `quote` 足以生成每套独立主标题与英文眉题，不需要扩展 schema；主题切换可继续使用纯文本更新。
+- 场景栏原先使用固定 `top:318px`，但清透主题文案在 1200×800 下使状态条延伸到 y=383，场景栏 y=378，产生约 5px 重叠；应以 Composer 顶部为锚点定位。
+- Renderer 已经拥有声明式主题对象和 localStorage 选择持久化，内置编辑器无需新增 Node 权限或 IPC；新增经过白名单清洗的 `custom` 主题即可复用现有 `applyTheme`。
+- LocalStorage 不适合直接保存超大原图；内置编辑器应在浏览器 Canvas 内把 PNG/JPG/WebP 缩放到最大 1920×1200，并输出受限 JPEG/WebP Data URL。
+- 实机上传 1672×941 PNG 后生成约 399KB JPEG Data URL；标题、主色、图片和 `custom` 选择在 WorkBuddy 完整重启后全部恢复。
+- 编辑器打开时后台每 4 秒重注入仍可保留未保存草稿；状态提示只在内容变化时更新，避免 MutationObserver 产生无意义刷新。
+- 用户所说的“选择框按钮”延续前一张截图，指欢迎页 `.wb-scene-tabs` 的三个场景选择按钮；隐藏该稳定容器不会影响功能卡或底部输入框。
+- 当前项目目录尚未初始化 Git；远端状态需先绕过本机格式错误的代理变量再确认，不能直接覆盖未知远端历史。
+- 显式禁用本次 Git 命令的代理后，`git ls-remote --symref` 成功且无任何引用输出，确认 `buzhangsaner/workbuddy-skin` 当前是空仓库，可由本地项目安全初始化首个 `main` 分支。
+- 现有 `.wb-scene-tabs` 在沉浸式 CSS 中仍有定位与玻璃样式；新规则需放在其后或使用更明确选择器，确保隐藏规则赢得级联。主题栏由 `ensureSwitcher()` 的 `replaceChildren()` 构造，GitHub 链接应作为最后一个非主题项追加。
+- 两项新测试已按预期失败：CSS 尚无 `display:none!important`，Renderer 尚无固定 GitHub URL 和图标 DOM。移动端规则把 `.wb-scene-tabs` 与 Composer 合并设置为 `position:relative`，因此隐藏声明应直接加入主 `.wb-scene-tabs` 规则，`display:none!important` 在所有断点下仍有效。
+- WorkBuddy 实机中 GitHub 图标矩形为 30×28px，位于右上角主题栏末尾；真实 CDP 鼠标事件成功命中链接且未改变当前主题。`.wb-scene-tabs` 计算样式为 `display:none`、布局矩形为 0×0，页面无横向溢出。
+- 最新实机截图确认隐藏场景栏后，四张原生功能卡和底部输入框构图正常，GitHub 圆形图标在主题栏末端清晰可见。
+- 项目主题素材约 20MB、QA 截图约 22MB，单文件均小于 20MB；QA 截图属于本机验证产物，应通过 `.gitignore` 排除，仓库保留必要主题素材。

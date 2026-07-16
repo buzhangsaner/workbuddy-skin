@@ -1,0 +1,13 @@
+{
+  "name": "workbuddy-dream-skin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check scripts/injector.mjs && node --check assets/renderer-inject.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

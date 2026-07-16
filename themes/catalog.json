@@ -1,0 +1,10 @@
+[
+  { "id": "pink-custom", "name": "粉系定制", "description": "玫瑰粉与柔光玻璃" },
+  { "id": "fortune-worker", "name": "财神打工", "description": "奶油金、朱红与好运云纹" },
+  { "id": "red-white-sci-fi", "name": "红白科幻", "description": "未来穹顶与高亮红色" },
+  { "id": "sage-clear", "name": "清透定制", "description": "鼠尾草绿与纸鹤留白" },
+  { "id": "inspiration-universe", "name": "灵感小宇宙", "description": "青绿、珊瑚与创意涂鸦" },
+  { "id": "purple-night", "name": "紫夜限定", "description": "深蓝星河与霓虹蝴蝶" },
+  { "id": "miku-future", "name": "初音未来", "description": "青色音浪与梦幻粉蓝" },
+  { "id": "black-gold-stage", "name": "舞台黑金", "description": "深黑玻璃与香槟金光" }
+]

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "purple-night",
+  "name": "紫夜限定",
+  "tagline": "让灵感在蓝紫星河中发光",
+  "quote": "NIGHT GLOW",
+  "image": "hero-clean-v2.png",
+  "colors": { "accent": "#7048ff", "secondary": "#24c8ee", "surface": "#f2f1ff", "ink": "#161647" }
+}

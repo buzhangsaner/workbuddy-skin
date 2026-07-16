@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "inspiration-universe",
+  "name": "灵感小宇宙",
+  "tagline": "先有灵感，再把它变成真的",
+  "quote": "IDEAS IN MOTION",
+  "image": "hero-clean-v2.png",
+  "colors": { "accent": "#12a98e", "secondary": "#ff735c", "surface": "#fff9e8", "ink": "#133e3b" }
+}

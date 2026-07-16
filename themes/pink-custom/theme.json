@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "pink-custom",
+  "name": "粉系定制",
+  "tagline": "与温柔灵感一起，创造无限可能",
+  "quote": "ROSE DREAM",
+  "image": "hero-clean-v2.png",
+  "colors": { "accent": "#d65c7a", "secondary": "#f4a1b5", "surface": "#fff4f6", "ink": "#4a2732" }
+}

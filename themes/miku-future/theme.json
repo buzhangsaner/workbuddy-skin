@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "miku-future",
+  "name": "初音未来",
+  "tagline": "把灵感写成代码与旋律",
+  "quote": "FUTURE SOUND",
+  "image": "hero-clean-v2.png",
+  "colors": { "accent": "#08b8bb", "secondary": "#ef79c9", "surface": "#effcff", "ink": "#153f54" }
+}
