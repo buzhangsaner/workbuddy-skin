@@ -3,13 +3,18 @@ $ErrorActionPreference = 'Stop'
 $SourceRoot = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $InstallRoot = if ($DestinationRoot) { [IO.Path]::GetFullPath($DestinationRoot) } else { Join-Path $env:LOCALAPPDATA 'WorkBuddyDreamSkin\app' }
 
-if (-not (Get-Command node -ErrorAction SilentlyContinue)) { throw 'Node.js 22 or newer is required.' }
-$NodeMajor = [int]((& node --version).TrimStart('v').Split('.')[0])
+$BundledNode = Join-Path $SourceRoot 'runtime\node.exe'
+$SystemNode = Get-Command node -ErrorAction SilentlyContinue
+$Node = if (Test-Path -LiteralPath $BundledNode) { $BundledNode } elseif ($SystemNode) { $SystemNode.Source } else { $null }
+if (-not $Node) { throw 'Node.js 22 or newer is required.' }
+$NodeMajor = [int]((& $Node --version).TrimStart('v').Split('.')[0])
 if ($NodeMajor -lt 22) { throw 'Node.js 22 or newer is required.' }
 
 if ([IO.Path]::GetFullPath($SourceRoot) -ne [IO.Path]::GetFullPath($InstallRoot)) {
   New-Item -ItemType Directory -Path $InstallRoot -Force | Out-Null
-  foreach ($Folder in @('assets', 'src', 'scripts', 'themes', 'editor')) {
+  $Folders = @('assets', 'src', 'scripts', 'themes', 'editor')
+  if (Test-Path -LiteralPath (Join-Path $SourceRoot 'runtime')) { $Folders += 'runtime' }
+  foreach ($Folder in $Folders) {
     $Destination = Join-Path $InstallRoot $Folder
     New-Item -ItemType Directory -Path $Destination -Force | Out-Null
     Copy-Item -Path (Join-Path $SourceRoot "$Folder\*") -Destination $Destination -Recurse -Force

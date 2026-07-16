@@ -6,8 +6,9 @@
   const CUSTOMIZER_ROOT_ID = 'workbuddy-dream-customizer-root';
   const STORAGE_KEY = 'workbuddy-dream-skin-selection-v1';
   const CUSTOM_STORAGE_KEY = 'workbuddy-dream-custom-theme-v1';
+  const SWITCHER_COLLAPSED_KEY = 'workbuddy-dream-switcher-collapsed-v1';
   const GITHUB_URL = 'https://github.com/buzhangsaner/workbuddy-skin/';
-  const VERSION = '0.4.0';
+  const VERSION = '0.5.0';
   const NATIVE_ID = 'native';
   const CUSTOM_ID = 'custom';
   const themeMap = new Map(themes.map(theme => [theme.id, theme]));
@@ -88,6 +89,13 @@
   const clearSelection = () => {
     try { localStorage.removeItem(STORAGE_KEY); } catch { /* Storage can be unavailable in hardened renderers. */ }
   };
+  const readSwitcherCollapsed = () => {
+    try { return localStorage.getItem(SWITCHER_COLLAPSED_KEY) === 'true'; } catch { return false; }
+  };
+  const writeSwitcherCollapsed = value => {
+    try { localStorage.setItem(SWITCHER_COLLAPSED_KEY, String(value)); } catch { /* Keep the control usable without persistence. */ }
+  };
+  let switcherCollapsed = readSwitcherCollapsed();
   const isValidSelection = value => value === NATIVE_ID || themeMap.has(value);
   const requested = themeMap.has(requestedThemeId) ? requestedThemeId : listedThemes[0]?.id;
   const stored = readSelection();
@@ -233,6 +241,23 @@
     svg.append(path);
     link.append(svg);
     return link;
+  };
+
+  const createSwitcherToggle = () => {
+    const button = element('button', 'wb-dream-switcher-toggle');
+    button.type = 'button';
+    button.dataset.switcherAction = 'toggle';
+    button.append(element('span', 'wb-dream-switcher-toggle__line'));
+    return button;
+  };
+
+  const applySwitcherCollapsed = (switcherRoot, collapsed) => {
+    switcherRoot.classList.toggle('is-collapsed', collapsed);
+    const button = switcherRoot.querySelector('.wb-dream-switcher-toggle');
+    if (!button) return;
+    button.setAttribute('aria-expanded', String(!collapsed));
+    button.setAttribute('aria-label', collapsed ? '展开主题选择栏' : '收起主题选择栏');
+    button.title = collapsed ? '展开主题选择栏' : '收起主题选择栏';
   };
 
   let customizerSession = !forceSelection && previousCustomizerSnapshot?.open ? {
@@ -525,7 +550,7 @@
       document.body.appendChild(switcherRoot);
     }
     let switcher = switcherRoot.querySelector('.wb-dream-switcher');
-    const signature = `${listedThemes.map(theme => theme.id).join('|')}|${CUSTOM_ID}|${NATIVE_ID}|${GITHUB_URL}`;
+    const signature = `${listedThemes.map(theme => theme.id).join('|')}|${CUSTOM_ID}|${NATIVE_ID}|${GITHUB_URL}|collapse-v1|workspace-left-v1`;
     if (!switcher) {
       switcher = element('nav', 'wb-dream-switcher');
       switcher.setAttribute('aria-label', '实时切换 WorkBuddy 主题');
@@ -533,14 +558,22 @@
     }
     if (switcher.dataset.signature !== signature) {
       switcher.replaceChildren(
+        createSwitcherToggle(),
+        createGitHubLink(),
         ...listedThemes.map(createThemeButton),
         createThemeButton({ id: CUSTOM_ID, name: '自定义', description: '打开内置主题编辑器', colors: customTheme.colors }),
         createThemeButton({ id: NATIVE_ID, name: '恢复原主题', description: '停用 Dream Skin，显示 WorkBuddy 原生外观' }),
-        createGitHubLink(),
       );
       switcher.dataset.signature = signature;
     }
     switcher.onclick = event => {
+      const toggle = event.target.closest('[data-switcher-action="toggle"]');
+      if (toggle && switcher.contains(toggle)) {
+        switcherCollapsed = !switcherCollapsed;
+        writeSwitcherCollapsed(switcherCollapsed);
+        applySwitcherCollapsed(switcherRoot, switcherCollapsed);
+        return;
+      }
       const button = event.target.closest('.wb-dream-theme-chip');
       if (!button || !switcher.contains(button)) return;
       if (button.dataset.themeId === CUSTOM_ID) openCustomizer();
@@ -549,6 +582,7 @@
         selectTheme(button.dataset.themeId);
       }
     };
+    applySwitcherCollapsed(switcherRoot, switcherCollapsed);
     updateCustomButton(customTheme);
     return switcherRoot;
   };

@@ -6,6 +6,15 @@
 
 它通过 WorkBuddy 自带的本机调试接口注入样式，不修改 `app.asar`，随时可以完整恢复原版。
 
+## 一键安装（推荐）
+
+打开 [GitHub Releases](https://github.com/buzhangsaner/workbuddy-skin/releases/latest) 下载对应系统安装包：
+
+- Windows：双击 `WorkBuddy-Dream-Skin-Setup.exe`，安装完成后自动启动。
+- macOS：打开 `WorkBuddy-Dream-Skin.dmg`，再双击 `WorkBuddy Dream Skin Installer.app`。
+
+Release 安装包已内置 Node.js，无需配置 PowerShell、Terminal 或自行安装 Node。未签名的 macOS 首次打开如果被系统拦截，请右键安装器选择“打开”；配置 Apple Developer 签名后可消除该提示。
+
 ## 内置主题
 
 | 主题 | 风格 |
@@ -22,18 +31,18 @@
 ## Windows 使用
 
 1. 使用 PowerShell 运行 `scripts/install-workbuddy-dream-skin.ps1`。
-2. 启动后直接点击 WorkBuddy 右上角的主题胶囊，立即切换，无需重启。
-3. 点击右上角“自定义”打开内置编辑器，可修改背景图、颜色、主题名称和主标题；编辑时实时预览，点击“保存主题”后永久保留。
-4. 点击主题栏末尾的 GitHub 图标可打开项目仓库。
-5. 欢迎页原有的三个场景选择按钮在 Dream Skin 下默认隐藏，让主视觉和功能卡保持干净。
-6. 点击右上角“恢复原主题”可暂时显示 WorkBuddy 原生外观；胶囊栏仍会保留。
+2. 启动后直接点击左侧菜单右边的主题胶囊，立即切换，无需重启。
+3. 点击“自定义”打开内置编辑器，可修改背景图、颜色、主题名称和主标题；编辑时实时预览，点击“保存主题”后永久保留。
+4. 主题栏最左侧依次是收起按钮和 GitHub 图标；GitHub 图标可打开项目仓库。
+5. 点击最左侧向上箭头可收起主题栏；收起后只在工作区左上角保留 `—⌄` 拉手，点击即可展开。
+6. 点击“恢复原主题”可暂时显示 WorkBuddy 原生外观；胶囊栏仍会保留。
 7. 双击桌面的 `Restore WorkBuddy` 可彻底停止注入并移除胶囊栏。
 
-右上角的选择会自动保存；下次从 `WorkBuddy Dream Skin` 启动时继续使用上次主题。桌面的 `Choose WorkBuddy Theme` 保留为备用选择器，可明确覆盖当前选择。
+主题选择会自动保存；下次从 `WorkBuddy Dream Skin` 启动时继续使用上次主题。桌面的 `Choose WorkBuddy Theme` 保留为备用选择器，可明确覆盖当前选择。
 
 ## 皮肤编辑器
 
-推荐直接点击 WorkBuddy 右上角“自定义”：
+推荐直接点击 WorkBuddy 工作区左上角主题栏中的“自定义”：
 
 - 支持 PNG、JPG、WebP，本机自动缩放并压缩，不会上传。
 - 颜色、名称和标题修改后立即预览；点击“取消”会恢复进入编辑器前的主题。
@@ -54,7 +63,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify-workbuddy-d
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\restore-workbuddy-dream-skin.ps1
 ```
 
-Windows 版已在 WorkBuddy 5.2.6 验证，要求 Node.js 22 或更高版本。调试端口只使用 `127.0.0.1:9336`，注入器还会校验 WorkBuddy 的页面标题、文件地址和 DOM 指纹。
+Windows 版已在 WorkBuddy 5.2.6 验证。Release 安装包已内置 Node.js；只有从源码运行脚本时才要求系统安装 Node.js 22 或更高版本。调试端口只使用 `127.0.0.1:9336`，注入器还会校验 WorkBuddy 的页面标题、文件地址和 DOM 指纹。
 
 ## macOS
 
@@ -72,4 +81,4 @@ chmod +x scripts/*-macos.sh
 - `Restore WorkBuddy.command`：恢复原版
 - `Dream Skin Editor.command`：打开皮肤编辑器
 
-macOS 启动后同样可使用 WorkBuddy 右上角的 10 个胶囊按钮即时切换、使用“自定义”内置编辑器和 GitHub 图标入口。默认读取 `/Applications/WorkBuddy.app`，独立安装目录为 `~/Library/Application Support/WorkBuddyDreamSkin/app`，要求 Node.js 22 或更高版本。
+macOS 启动后同样可使用左侧菜单右边的 10 个胶囊按钮即时切换、使用“自定义”内置编辑器、GitHub 图标和收起拉手。默认读取 `/Applications/WorkBuddy.app`，独立安装目录为 `~/Library/Application Support/WorkBuddyDreamSkin/app`；Release DMG 已内置 Node.js。

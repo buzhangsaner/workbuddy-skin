@@ -15,7 +15,7 @@ test('injector and lifecycle scripts keep WorkBuddy reversible', async () => {
   assert.match(injector, /Page\.captureScreenshot[\s\S]*30000/);
   assert.match(start, /WORKBUDDY_REMOTE_DEBUGGING_PORT/);
   assert.match(start, /remote-debugging-address=127\.0\.0\.1/);
-  assert.match(start, /& node @ApplyArgs/);
+  assert.match(start, /& \$Node @ApplyArgs/);
   assert.match(start, /if \(\$LASTEXITCODE -ne 0\)/);
   assert.match(restore, /--remove/);
   assert.doesNotMatch(start + restore, /app\.asar[^\n]*(?:write|replace|patch)/i);

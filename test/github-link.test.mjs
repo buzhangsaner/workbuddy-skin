@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('switcher ends with an accessible safe GitHub repository link', async () => {
+test('switcher includes an accessible safe GitHub repository link', async () => {
   const [renderer, css] = await Promise.all([
     read('assets/renderer-inject.js'),
     read('assets/dream-skin.css'),

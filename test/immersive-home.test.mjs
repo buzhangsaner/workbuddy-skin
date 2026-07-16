@@ -50,7 +50,9 @@ test('native welcome controls are rearranged into title, card and composer bands
   assert.match(css, /\.quick-actions__item:nth-child\(1\)::after/);
   assert.match(css, /\.quick-actions__item:nth-child\(4\)::after/);
   assert.match(css, /data-wb-dream-route="chat"[^}]*\.wb-home-page\s*\{[^}]*left:\s*0\s*!important/s);
-  assert.match(css, /data-wb-dream-route="chat"[^}]*\.wb-scene-tabs\s*\{[^}]*display:\s*none\s*!important/s);
+  assert.match(css, /data-wb-dream-route="chat"[^}]*\.wb-scene-tabs\s*\{[^}]*top:\s*auto\s*!important[^}]*bottom:\s*320px\s*!important/s);
+  assert.match(css, /data-wb-dream-route="chat"[^}]*\.wb-scene-tabs\s*\{[^}]*backdrop-filter:\s*blur\(16px\)/s);
+  assert.doesNotMatch(css, /data-wb-dream-route="chat"[^}]*\.wb-scene-tabs\s*\{[^}]*display:\s*none\s*!important/s);
 });
 
 test('sidebar and active conversation surfaces keep the selected theme', async () => {

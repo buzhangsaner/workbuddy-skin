@@ -34,6 +34,14 @@
 - [x] 隐藏场景选择器并加入安全的右上角 GitHub 图标链接
 - [x] 安装到 WorkBuddy 并完成实机点击、布局和完整回归
 - [x] 初始化 Git 仓库、检查大文件并推送到 `buzhangsaner/workbuddy-skin`
+- [x] 先写并观察主题栏收起拉手、场景栏恢复与发行包测试失败
+- [x] 实现可持久化的一键收起/展开拉手并恢复场景选择器
+- [x] 让 Windows/macOS 启动脚本优先使用发行包内置 Node.js
+- [x] 实现 Inno Setup EXE 与 macOS 安装器 App/DMG 构建
+- [x] 实现 GitHub tag 自动构建并发布 EXE/DMG
+- [x] 修复黑金主题任务/空间会话文字对比度并验证悬停/选中态
+- [x] 将主题栏移动到左侧菜单右边，并把收起/GitHub 控件排列到最左侧
+- [ ] 安装实机验证、完整回归、合入 main 并发布 Release
 
 ## 关键决策
 
@@ -50,7 +58,12 @@
 - 沉浸式改造只作用于 Chat 欢迎页；Terminal、Editor、设置等工作区保持轻量换色，避免影响生产力界面。
 - 内置编辑器只接受文本、十六进制颜色和 PNG/JPG/WebP；不接受自定义 CSS、SVG 或 JavaScript。
 - 自定义主题草稿只用于实时预览；取消恢复打开前选择，保存后才写入独立 localStorage 并将选择设为 `custom`。
-- 场景选择器只通过主题 CSS 隐藏，不删除 WorkBuddy 原生节点；GitHub 图标使用内联 SVG 和固定 HTTPS 地址，不加载第三方图标脚本。
+- GitHub 图标使用内联 SVG 和固定 HTTPS 地址，不加载第三方图标脚本。
+- 欢迎页场景选择器保持显示；“隐藏选择框”指收起右上角主题选择栏，而不是隐藏 WorkBuddy 场景按钮。
+- 主题栏收起后只显示一条 `—⌄` 玻璃拉手，点击恢复完整栏，并用 localStorage 记住状态。
+- 主题栏从工作区左上角开始，展开顺序固定为“收起 → GitHub → 主题”，不再贴右侧窗口边缘。
+- Release 安装包内置 Node.js 运行时；启动脚本优先使用内置运行时，源码安装仍兼容系统 Node.js。
+- Windows 使用 Inno Setup 生成 EXE；macOS 使用原生 App 安装器与 `hdiutil` 生成 DMG，GitHub tag 自动构建和发布。
 
 ## 错误记录
 
@@ -86,3 +99,10 @@
 | OpenSSL 重试连接成功但 GitHub 返回 403 | 当前 HTTPS 凭据是 `buzhangsan`，无权写入 `buzhangsaner/workbuddy-skin`；检查 GitHub CLI 与 SSH 是否有目标账号凭据，不再重复该 HTTPS 推送 |
 | `gh auth login --web` 被坏代理改写为无效主机 `xn--http-996a` | 仅对下一次授权进程清除 HTTP/HTTPS/ALL proxy 环境变量后重新发起，不修改用户全局设置 |
 | GitHub CLI 最初只有失效的 `buzhangsan` 凭据且 SSH 无密钥 | 通过 GitHub 官方设备授权登录 `buzhangsaner`，清除单次进程代理后成功推送 `main`，未改全局代理 |
+| 将“隐藏选择框按钮”误解为隐藏首页场景按钮 | 实机确认当前无主题栏收起控件；撤销 `.wb-scene-tabs { display:none }`，改为给右上角主题栏增加持久化收起拉手 |
+| 黑金主题任务与空间条目文字几乎不可见 | 截图确认深色背景上仍使用原生近黑文字；先定位真实文字节点与计算样式，再增加仅限黑金侧栏的高对比覆盖 |
+| Release 工作流测试要求 YAML 直接包含 `hdiutil` | DMG 构建已正确封装在 `build-dmg.sh` 且该脚本单独验证 `hdiutil`；删除重复的工作流层断言，保留行为覆盖 |
+| README/版本批量补丁包含多余空 hunk 标记而未应用 | 拆分为结构明确的补丁，不重复原始补丁文本 |
+| 全量回归仍要求启动脚本直接调用裸 `node` | 新发行架构必须调用已解析的 `$Node` 才能使用内置运行时；更新旧断言为 `& $Node @ApplyArgs`，可逆性与退出码检查保持不变 |
+| v0.5 实机中收起/场景恢复通过，但黑金标题规则未改变计算色 | 暂不扩大覆盖范围；检查主题属性、节点 `matches()` 和注入样式规则，定位选择器为何未命中 |
+| 本地 Info.plist 校验脚本引用未安装的 `@xmldom/xmldom` | 不新增发行依赖；改用 Python 标准库 XML 解析器完成同等只读校验 |

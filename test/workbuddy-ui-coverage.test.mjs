@@ -24,3 +24,9 @@ test('theme explicitly covers current WorkBuddy navigation and home actions', as
   assert.match(css, /\.wb-scene-tabs__pill--active[\s\S]*background:[^;]+!important/);
   assert.match(css, /\.quick-actions__item[\s\S]*background:[^;]+!important/);
 });
+
+test('black-gold sidebar keeps conversation titles and timestamps readable', async () => {
+  const css = await read('assets/dream-skin.css');
+  assert.match(css, /data-wb-dream-theme="black-gold-stage"[^}]*\.conversation-sidebar\s*\{[^}]*--wb-todo-menu-text-default:\s*#f4e8c8\s*!important/s);
+  assert.match(css, /data-wb-dream-theme="black-gold-stage"[^}]*\.conversation-sidebar\s*\{[^}]*--wb-todo-menu-text-heading:\s*rgba\(229,198,128,\.68\)\s*!important/s);
+});

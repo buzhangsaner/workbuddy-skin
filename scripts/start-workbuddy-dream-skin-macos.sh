@@ -6,7 +6,9 @@ THEME_ID="${THEME_ID:-pink-custom}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 EXE="/Applications/WorkBuddy.app/Contents/MacOS/WorkBuddy"
 if [[ ! -x "$EXE" ]]; then echo "WorkBuddy.app was not found in /Applications." >&2; exit 1; fi
-if ! command -v node >/dev/null || [[ "$(node -p 'Number(process.versions.node.split(`.`)[0])')" -lt 22 ]]; then echo "Node.js 22 or newer is required." >&2; exit 1; fi
+NODE_BIN="$ROOT/runtime/node"
+if [[ ! -x "$NODE_BIN" ]]; then NODE_BIN="$(command -v node || true)"; fi
+if [[ -z "$NODE_BIN" ]] || [[ "$("$NODE_BIN" -p 'Number(process.versions.node.split(`.`)[0])')" -lt 22 ]]; then echo "Node.js 22 or newer is required." >&2; exit 1; fi
 if ! curl --noproxy '*' -fsS --max-time 2 "http://127.0.0.1:$PORT/json/list" >/dev/null 2>&1; then
   osascript -e 'tell application "WorkBuddy" to quit' >/dev/null 2>&1 || true
   for _ in {1..20}; do pgrep -x WorkBuddy >/dev/null || break; sleep .25; done
@@ -18,6 +20,6 @@ THEME_DIR="$ROOT/themes/$THEME_ID"
 pkill -f "node $ROOT/scripts/injector.mjs" >/dev/null 2>&1 || true
 APPLY_ARGS=("$ROOT/scripts/injector.mjs" --port "$PORT" --theme-dir "$THEME_DIR" --once)
 if [[ "$FORCE_THEME" -eq 0 ]]; then APPLY_ARGS+=(--respect-selection); fi
-node "${APPLY_ARGS[@]}"
-nohup node "$ROOT/scripts/injector.mjs" --port "$PORT" --theme-dir "$THEME_DIR" --respect-selection >/tmp/workbuddy-dream-skin.log 2>&1 &
+"$NODE_BIN" "${APPLY_ARGS[@]}"
+nohup "$NODE_BIN" "$ROOT/scripts/injector.mjs" --port "$PORT" --theme-dir "$THEME_DIR" --respect-selection >/tmp/workbuddy-dream-skin.log 2>&1 &
 echo "WorkBuddy Dream Skin started ($THEME_ID)."
