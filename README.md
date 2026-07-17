@@ -1,5 +1,12 @@
 # WorkBuddy Dream Skin
 
+<div align="center">
+  <h2>加入交流群</h2>
+  <p><strong>WorkBuddy 换肤测试群</strong></p>
+  <img src="assets/community/workbuddy-skin-wechat-group-2026-07-24.jpg" alt="WorkBuddy 换肤测试微信群二维码" width="420" />
+  <p><sub>二维码有效期至 2026 年 7 月 24 日；过期后会更新。</sub></p>
+</div>
+
 [![GitHub](https://img.shields.io/badge/GitHub-buzhangsaner%2Fworkbuddy--skin-181717?logo=github)](https://github.com/buzhangsaner/workbuddy-skin/)
 
 将 Codex Dream Skin 的 8 套原版视觉方案适配到 Windows 与 macOS 版 WorkBuddy。每套主题都会同步替换背景、左侧菜单、活动项、场景按钮、快捷按钮、输入框、发送按钮和整体色板；图片素材只作纯背景，不包含伪造菜单或文字。
