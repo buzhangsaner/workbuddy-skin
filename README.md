@@ -9,6 +9,17 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-buzhangsaner%2Fworkbuddy--skin-181717?logo=github)](https://github.com/buzhangsaner/workbuddy-skin/)
 
+## 免责声明
+
+> [!IMPORTANT]
+> **本项目为非官方个人主题项目，与腾讯及 WorkBuddy 官方不存在隶属、授权、合作或背书关系。**
+
+- 本仓库仅发布作者原创的主题、配色、CSS、配置、注入工具和安装脚本，不包含、不修改后再分发 WorkBuddy 客户端源码、二进制、`app.asar`、图标、Logo 或其他专有资源。
+- `WorkBuddy`、腾讯及相关名称、商标和标识均归各自权利人所有；本项目仅为说明兼容对象而作必要引用，不代表获得商标授权。
+- 用户应通过 WorkBuddy 官方渠道获取客户端，并自行遵守 WorkBuddy《用户协议》《许可协议》及适用法律法规；使用本项目产生的兼容性、数据或其他风险由用户自行承担。
+- 如权利人认为仓库内容存在不当使用，请通过 GitHub Issue 联系，项目维护者将及时核查、调整或移除。
+- 本说明仅用于项目边界说明，不构成法律意见。
+
 将 Codex Dream Skin 的 8 套原版视觉方案适配到 Windows 与 macOS 版 WorkBuddy。每套主题都会同步替换背景、左侧菜单、活动项、场景按钮、快捷按钮、输入框、发送按钮和整体色板；图片素材只作纯背景，不包含伪造菜单或文字。
 
 它通过 WorkBuddy 自带的本机调试接口注入样式，不修改 `app.asar`，随时可以完整恢复原版。
