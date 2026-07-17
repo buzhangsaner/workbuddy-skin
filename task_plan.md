@@ -41,7 +41,7 @@
 - [x] 实现 GitHub tag 自动构建并发布 EXE/DMG
 - [x] 修复黑金主题任务/空间会话文字对比度并验证悬停/选中态
 - [x] 将主题栏移动到左侧菜单右边，并把收起/GitHub 控件排列到最左侧
-- [ ] 安装实机验证、完整回归、合入 main 并发布 Release
+- [x] 安装实机验证、完整回归、合入 main 并发布 Release
 
 ## 关键决策
 
@@ -110,3 +110,4 @@
 | 首次 CDP 点击产物的临时检查器对响应结构解包两次 | 保留页面状态，修正一次性检查器的响应处理后重试，成功定位 `.detail-panel` 与 `.artifact-content` |
 | `npm run check` 在当前受限 Git Bash 中转调系统 shell 被拒绝 | 拆分执行同等的两个 `node --check` 命令，均以退出码 0 通过；CI 的标准 Ubuntu runner 仍执行原脚本 |
 | 旧版后台守护进程在实机 QA 中回写旧 CSS，且产物卡背景有过渡动画 | 在同一 CDP 求值中直接加载待发布 CSS，并临时关闭动画读取最终计算样式，确认产物卡为黑金深色而非浅灰 |
+| 受限环境无法读取原 GitHub CLI 配置，临时目录也不能由 CLI 写入 | 使用工作区内一次性 `GH_CONFIG_DIR` 配合系统 keyring 完成推送与 Release，发布后立即删除临时 hosts 配置 |
