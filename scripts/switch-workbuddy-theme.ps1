@@ -16,7 +16,7 @@ if (-not $ThemeId) {
   $Form.FormBorderStyle = 'FixedDialog'
   $Form.MaximizeBox = $false
   $Label = New-Object System.Windows.Forms.Label
-  $Label.Text = 'Select one of the eight Codex Dream Skin themes:'
+  $Label.Text = 'Select one of the nine Codex Dream Skin themes:'
   $Label.SetBounds(20, 18, 470, 24)
   $List = New-Object System.Windows.Forms.ListBox
   $List.SetBounds(20, 50, 465, 270)

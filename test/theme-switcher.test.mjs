@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 
-test('renderer creates an accessible ten-option live theme switcher', async () => {
+test('renderer creates an accessible live theme switcher with custom and native options', async () => {
   const renderer = await read('assets/renderer-inject.js');
   assert.match(renderer, /workbuddy-dream-skin-selection-v1/);
   assert.match(renderer, /wb-dream-switcher/);

@@ -1530,6 +1530,143 @@ html[data-wb-dream-theme="black-gold-stage"] .conversation-sidebar {
   --wb-todo-menu-text-heading: rgba(229,198,128,.68) !important;
 }
 
+/* 人民智造：只改变视觉，不增加或重排 WorkBuddy 结构。 */
+html[data-wb-dream-theme="people-intelligence"] .wb-dream-hero-art {
+  object-position: 72% center;
+  opacity: .92;
+  filter: saturate(1.08) contrast(1.02) sepia(.06);
+}
+
+html[data-wb-dream-theme="people-intelligence"] .wb-dream-hero::after {
+  background:
+    linear-gradient(90deg, rgba(251,245,233,.98) 0%, rgba(251,245,233,.86) 22%, rgba(251,245,233,.18) 52%, transparent 76%),
+    linear-gradient(0deg, rgba(251,245,233,.92) 0%, rgba(251,245,233,.34) 24%, transparent 54%);
+}
+
+html[data-wb-dream-theme="people-intelligence"] .conversation-sidebar,
+html[data-wb-dream-theme="people-intelligence"] .conversation-list {
+  --wb-todo-menu-text-default: #2b2018 !important;
+  --wb-todo-menu-text-heading: rgba(126,79,34,.72) !important;
+  border-color: rgba(181,31,26,.18) !important;
+  background: linear-gradient(180deg, rgba(255,252,244,.97), rgba(247,235,211,.94)) !important;
+  color: #2b2018 !important;
+  box-shadow: inset -1px 0 rgba(214,162,58,.24) !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .conversation-list-tab-button,
+html[data-wb-dream-theme="people-intelligence"] .user-menu-trigger {
+  border-color: rgba(181,31,26,.18) !important;
+  background: rgba(255,249,237,.82) !important;
+  color: #2b2018 !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .conversation-agent-card[class*="_selected_"],
+html[data-wb-dream-theme="people-intelligence"] .conversation-list-tab-button[aria-selected="true"] {
+  border-color: rgba(181,31,26,.34) !important;
+  background: linear-gradient(100deg, rgba(181,31,26,.14), rgba(214,162,58,.12)) !important;
+  color: #8f1714 !important;
+  box-shadow: inset 3px 0 #b51f1a !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .teams-main-content,
+html[data-wb-dream-theme="people-intelligence"] .teams-content-wrapper,
+html[data-wb-dream-theme="people-intelligence"] .main-content--welcome {
+  background:
+    radial-gradient(circle at 82% 14%, rgba(214,162,58,.16), transparent 34%),
+    linear-gradient(135deg, rgba(251,245,233,.72), rgba(255,250,240,.42)) !important;
+  color: #2b2018 !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .wb-dream-immersive__eyebrow,
+html[data-wb-dream-theme="people-intelligence"] .wb-dream-immersive__title,
+html[data-wb-dream-theme="people-intelligence"] .wb-home-header__title {
+  color: #8f1714 !important;
+  font-family: "STKaiti", "KaiTi", "Noto Serif SC", serif !important;
+  text-shadow: 0 2px 0 rgba(255,248,225,.86), 0 10px 30px rgba(120,39,18,.18) !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .wb-scene-tabs__pill,
+html[data-wb-dream-theme="people-intelligence"] .quick-actions__item,
+html[data-wb-dream-theme="people-intelligence"] .growth-plan-entry {
+  border-color: rgba(181,31,26,.26) !important;
+  background: linear-gradient(145deg, rgba(255,252,244,.94), rgba(247,234,207,.86)) !important;
+  color: #2b2018 !important;
+  box-shadow: 0 14px 34px rgba(111,50,25,.16), inset 0 1px rgba(255,255,255,.82) !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .wb-scene-tabs__pill--active,
+html[data-wb-dream-theme="people-intelligence"] .quick-actions__item:hover {
+  border-color: rgba(214,162,58,.68) !important;
+  background: linear-gradient(145deg, #b51f1a, #8f1714) !important;
+  color: #fff8e8 !important;
+  box-shadow: 0 12px 28px rgba(143,23,20,.24), inset 0 1px rgba(255,224,142,.28) !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .wb-home-composer__input-slot [class*="_container_"],
+html[data-wb-dream-theme="people-intelligence"] .wb-home-composer__input-slot [class*="_mainArea_"] {
+  border-color: rgba(181,31,26,.32) !important;
+  background: rgba(255,252,244,.94) !important;
+  color: #2b2018 !important;
+  box-shadow: 0 18px 44px rgba(111,50,25,.18), inset 0 1px rgba(255,255,255,.88) !important;
+  backdrop-filter: blur(18px) saturate(1.04);
+}
+
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects,
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .landing,
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .workbuddy-collab,
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .project-detail-view {
+  background: linear-gradient(145deg, #fbf5e9, #f5e8d2) !important;
+  color: #2b2018 !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .project-grid__card,
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .landing-template-card {
+  border-color: rgba(181,31,26,.22) !important;
+  background: linear-gradient(145deg, rgba(255,252,244,.96), rgba(247,234,207,.88)) !important;
+  color: #2b2018 !important;
+  box-shadow: 0 10px 24px rgba(100,28,20,.07) !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .cb-markdown,
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .artifact-content,
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects [class*="_assistantTextContent_"] {
+  color: #2b2018 !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .detail-panel,
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .detail-header,
+html[data-wb-dream-theme="people-intelligence"] .main-content--projects .artifact-slot-panel__card {
+  border-color: rgba(181,31,26,.24) !important;
+  background: rgba(255,252,244,.94) !important;
+  color: #2b2018 !important;
+  box-shadow: 0 12px 30px rgba(111,50,25,.13) !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"][data-wb-dream-route="chat"] .main-content--chat {
+  background: rgba(251,245,233,.90) !important;
+  color: #2b2018 !important;
+  backdrop-filter: blur(12px) saturate(1.04);
+}
+
+html[data-wb-dream-theme="people-intelligence"][data-wb-dream-route="chat"] .main-content--chat [class*="_input-area-container_"] [class*="_container_"],
+html[data-wb-dream-theme="people-intelligence"][data-wb-dream-route="chat"] .main-content--chat [class*="_input-area-container_"] [class*="_mainArea_"] {
+  border-color: rgba(181,31,26,.30) !important;
+  background: rgba(255,252,244,.96) !important;
+  color: #2b2018 !important;
+  box-shadow: 0 16px 38px rgba(111,50,25,.16) !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .wb-dream-switcher {
+  border-color: rgba(214,162,58,.52) !important;
+  background: rgba(100,28,20,.92) !important;
+  box-shadow: 0 14px 36px rgba(84,25,18,.28) !important;
+}
+
+html[data-wb-dream-theme="people-intelligence"] .wb-dream-theme-chip {
+  border-color: rgba(255,230,162,.22) !important;
+  color: #fff4d2 !important;
+}
+
 @keyframes wb-dream-float {
   from { transform: translate3d(0, -5px, 0) scale(.98); }
   to { transform: translate3d(-10px, 12px, 0) scale(1.04); }

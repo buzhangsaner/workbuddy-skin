@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "people-intelligence",
+  "name": "人民智造",
+  "tagline": "以代码为笔，绘就智能新图景",
+  "quote": "PEOPLE BUILD THE FUTURE",
+  "image": "hero-clean-v1.png",
+  "colors": { "accent": "#b51f1a", "secondary": "#d6a23a", "surface": "#fbf5e9", "ink": "#2b2018" }
+}

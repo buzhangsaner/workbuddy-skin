@@ -8,12 +8,13 @@ const read = path => readFile(new URL(path, root), 'utf8');
 const expected = [
   'pink-custom', 'fortune-worker', 'red-white-sci-fi', 'sage-clear',
   'inspiration-universe', 'purple-night', 'miku-future', 'black-gold-stage',
+  'people-intelligence',
 ];
 
-test('catalog exposes all eight upstream-inspired skin sets', async () => {
+test('catalog exposes all nine built-in skin sets', async () => {
   const catalog = JSON.parse(await read('themes/catalog.json'));
   assert.deepEqual(catalog.map(item => item.id), expected);
-  assert.equal(new Set(catalog.map(item => item.name)).size, 8);
+  assert.equal(new Set(catalog.map(item => item.name)).size, 9);
 });
 
 test('every catalog theme is valid and references a clean local hero', async () => {
