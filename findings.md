@@ -51,3 +51,7 @@
 - 已增加项目页 DOM 路由识别和画布、Markdown、表格、产物抽屉、输入区、消息气泡、选中任务卡的回归测试；发行元数据也增加 v0.5.1 一致性门禁。
 - v0.5.1 流水线 `29549064201` 的 test、Windows、macOS、release 四个 job 全部成功；正式 Release 同时包含 44,128,251 字节 EXE 与 64,567,854 字节 DMG。
 - 从 Release 重新下载两项资产后，SHA-256 分别匹配 GitHub 提供的 `800bc6b4…28865` 与 `dd782d92…33e01`；EXE 文件头为 `MZ`，DMG UDIF 尾签名为 `koly`。
+- 新主题无需复制参考图中的菜单、卡片或输入框；使用纯背景素材配合现有原生控件换色，才能满足“复现视觉但不改结构”的要求。
+- “人民智造”主题专属规则只使用背景、颜色、边框、阴影、透明度、滤镜和字体；测试明确禁止 `display`、`position`、宽高、间距、排序与 `transform` 等结构属性。
+- WorkBuddy 5.2.6 项目首页存在独立的 `.landing` 白色覆盖层；只给 `.main-content--projects` 和 `.workbuddy-collab` 换色仍会显示纯白主体，必须继续覆盖 `.landing`、`.project-grid__card` 与 `.landing-template-card`。
+- 实机热加载确认“人民智造”在欢迎页、项目页和对话页保持一致色板；当前切换状态为 `people-intelligence`，主题栏共 11 个可交互选项。

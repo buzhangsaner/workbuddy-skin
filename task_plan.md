@@ -2,7 +2,7 @@
 
 ## 目标
 
-为 Windows 与 macOS WorkBuddy 创建独立、可恢复、无需修改 `app.asar` 的 8 套 Codex Dream Skin 原版风格主题。
+为 Windows 与 macOS WorkBuddy 创建独立、可恢复、无需修改 `app.asar` 的 9 套内置视觉主题，并支持自定义主题。
 
 ## 阶段
 
@@ -42,6 +42,9 @@
 - [x] 修复黑金主题任务/空间会话文字对比度并验证悬停/选中态
 - [x] 将主题栏移动到左侧菜单右边，并把收起/GitHub 控件排列到最左侧
 - [x] 安装实机验证、完整回归、合入 main 并发布 Release
+- [x] 新增“人民智造”宣纸朱红主题，保持 WorkBuddy 原有结构不变
+- [x] 实机验证欢迎页、项目页和对话页，修复项目页白底遮罩
+- [x] 更新主题目录、选择器、README 与回归测试并推送 main
 
 ## 关键决策
 
@@ -64,6 +67,7 @@
 - 主题栏从工作区左上角开始，展开顺序固定为“收起 → GitHub → 主题”，不再贴右侧窗口边缘。
 - Release 安装包内置 Node.js 运行时；启动脚本优先使用内置运行时，源码安装仍兼容系统 Node.js。
 - Windows 使用 Inno Setup 生成 EXE；macOS 使用原生 App 安装器与 `hdiutil` 生成 DMG，GitHub tag 自动构建和发布。
+- “人民智造”通过声明式主题配置和主题专属视觉 CSS 实现；Renderer 不增加主题特判，CSS 不使用布局、尺寸、间距或位移属性。
 
 ## 错误记录
 

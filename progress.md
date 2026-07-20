@@ -1,5 +1,14 @@
 # Progress
 
+## 2026-07-20
+
+- 新增第 9 套内置主题“人民智造”，色板为朱红、鎏金、宣纸米白与墨褐。
+- 生成并接入无 UI、无菜单、无文字和无 Logo 的纯场景背景 `hero-clean-v1.png`。
+- 主题实现仅使用视觉 CSS，不新增 Renderer 主题分支，也不改变 WorkBuddy DOM、控件数量或页面布局。
+- 在真实 WorkBuddy 5.2.6 完成欢迎页、项目页和对话页验证；定位并覆盖项目页 `.landing` 白底及项目卡片原生白色。
+- 主题目录、Windows/macOS 选择说明和 README 已更新；52 项自动测试、Node 语法与差异检查全部通过。
+- 提交 `6f29600` 已推送到 `buzhangsaner/workbuddy-skin` 的 `main` 分支。
+
 ## 2026-07-16
 
 - 完成本机 WorkBuddy 进程、安装包和主进程静态检查。
