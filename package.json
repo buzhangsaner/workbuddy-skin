@@ -3,11 +3,54 @@
   "version": "0.5.1",
   "private": true,
   "type": "module",
+  "main": "manager/electron/main.cjs",
   "scripts": {
     "test": "node --test",
-    "check": "node --check scripts/injector.mjs && node --check assets/renderer-inject.js"
+    "check": "node --check scripts/injector.mjs && node --check assets/renderer-inject.js && node --check manager/electron/main.cjs && node --check manager/src/app.js",
+    "manager:start": "electron .",
+    "manager:dist:win": "electron-builder --win --x64 -p never",
+    "manager:dist:mac": "electron-builder --mac -p never"
   },
   "engines": {
     "node": ">=22"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  },
+  "devDependencies": {
+    "electron": "^37.2.6",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.workbuddy.skinmanager",
+    "productName": "WorkBuddy Skin Manager",
+    "directories": {
+      "output": "dist-manager"
+    },
+    "files": [
+      "manager/**/*",
+      "assets/**/*",
+      "src/**/*",
+      "scripts/**/*",
+      "themes/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "scripts/**/*",
+      "themes/**/*"
+    ],
+    "win": {
+      "target": ["nsis", "portable"],
+      "artifactName": "WorkBuddy-Skin-Manager-${version}-${arch}.${ext}"
+    },
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": ["dmg"],
+      "artifactName": "WorkBuddy-Skin-Manager-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
