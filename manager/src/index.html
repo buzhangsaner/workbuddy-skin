@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' theme-asset: file: data:; style-src 'self'; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <title>WorkBuddy Skin Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="app-shell">
+    <header class="masthead">
+      <div class="brand-lockup">
+        <span class="brand-index">WB<br />15</span>
+        <div>
+          <p class="eyebrow">WORKBUDDY / VISUAL ARCHIVE</p>
+          <h1>皮肤标本馆</h1>
+          <p class="brand-note">挑选一种工作气候，随时回到原生。</p>
+        </div>
+      </div>
+      <nav class="toolbar" aria-label="管理器操作">
+        <button type="button" class="text-button" id="openGitHub">GitHub ↗</button>
+        <button type="button" class="text-button" id="importTheme">导入主题</button>
+        <button type="button" class="solid-button" id="designTheme">设计主题</button>
+        <button type="button" class="icon-button" id="refreshThemes" aria-label="刷新主题">↻</button>
+        <button type="button" class="danger-button" id="restoreTheme">完全还原</button>
+      </nav>
+      <div class="status-strip" id="managerStatus" aria-live="polite">
+        <span class="status-dot"></span>
+        <span id="workBuddyStatus">正在检查 WorkBuddy…</span>
+        <span class="status-rule"></span>
+        <span id="activeThemeStatus">当前主题：读取中</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="collection-head" aria-labelledby="collectionTitle">
+        <div>
+          <p class="section-number">COLLECTION / 01</p>
+          <h2 id="collectionTitle">内置与自定义主题</h2>
+        </div>
+        <p class="collection-copy">每套主题只改变视觉层，不改 WorkBuddy 的页面结构。所有导入包都禁止执行脚本。</p>
+        <strong id="themeCount">—</strong>
+      </section>
+      <section class="theme-grid" id="themeGrid" aria-label="可用主题"></section>
+    </main>
+
+    <footer class="footer-bar">
+      <label class="restart-option">
+        <input type="checkbox" id="restartWorkBuddy" checked />
+        <span>需要时允许安全重启 WorkBuddy</span>
+      </label>
+      <p><span class="shield">◇</span> `.wbskin` 仅允许 JSON 与本地 PNG/JPG/WebP，不执行第三方 JavaScript。</p>
+    </footer>
+  </div>
+
+  <dialog id="designerDialog" class="designer-dialog" aria-labelledby="designerTitle">
+    <form method="dialog" id="designerForm">
+      <header class="dialog-head">
+        <div>
+          <p class="eyebrow">PERSONAL EDITION</p>
+          <h2 id="designerTitle">设计你的工作气候</h2>
+        </div>
+        <button type="button" class="icon-button" id="closeDesigner" aria-label="关闭设计器">×</button>
+      </header>
+      <div class="designer-layout">
+        <div class="designer-preview" id="designerPreview">
+          <div class="preview-copy">
+            <span id="previewQuote">MY WORKBUDDY</span>
+            <strong id="previewTitle">我的自定义主题</strong>
+          </div>
+        </div>
+        <div class="designer-fields">
+          <button type="button" class="wallpaper-picker" id="chooseWallpaper">选择背景图 <small id="wallpaperName">PNG / JPG / WebP，最大 16 MB</small></button>
+          <input type="hidden" id="wallpaperPath" />
+          <label>主题名称<input id="customName" maxlength="80" value="我的自定义主题" required /></label>
+          <label>主标题<input id="customTagline" maxlength="120" value="让工作界面拥有自己的气候" required /></label>
+          <label>英文眉题<input id="customQuote" maxlength="120" value="MY WORKBUDDY" required /></label>
+          <div class="color-grid">
+            <label>主色<input id="customAccent" type="color" value="#c44732" /></label>
+            <label>辅色<input id="customSecondary" type="color" value="#d9a441" /></label>
+            <label>页面<input id="customSurface" type="color" value="#f5efe4" /></label>
+            <label>文字<input id="customInk" type="color" value="#24201b" /></label>
+          </div>
+          <div class="select-grid">
+            <label>图片适配<select id="customFit"><option value="cover">铺满</option><option value="contain">完整显示</option></select></label>
+            <label>视觉主体<select id="customPosition"><option value="right center">右侧</option><option value="center center">居中</option><option value="left center">左侧</option></select></label>
+          </div>
+        </div>
+      </div>
+      <footer class="dialog-actions">
+        <button type="button" class="text-button" id="cancelDesigner">取消</button>
+        <button type="submit" class="solid-button">保存到主题馆</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <div class="busy-overlay" id="busyOverlay" aria-live="assertive" hidden>
+    <div class="busy-mark"><i></i><i></i><i></i></div>
+    <p id="busyText">正在处理…</p>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
