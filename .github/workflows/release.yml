@@ -42,7 +42,7 @@ jobs:
       - name: Build Windows installer
         shell: pwsh
         run: |
-          $Version = if ($env:GITHUB_REF -like 'refs/tags/*') { "${{ github.ref_name }}".TrimStart('v') } else { '0.6.0' }
+          $Version = if ($env:GITHUB_REF -like 'refs/tags/*') { "${{ github.ref_name }}".TrimStart('v') } else { '0.6.1' }
           & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DAppVersion=$Version" packaging/windows/workbuddy-dream-skin.iss
       - name: Build Windows skin manager
         run: npm run manager:dist:win
@@ -97,4 +97,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release create "$GITHUB_REF_NAME" dist/* --title "WorkBuddy Dream Skin $GITHUB_REF_NAME" --generate-notes
+        shell: bash
+        run: |
+          mapfile -d '' files < <(find dist -type f -print0)
+          test "${#files[@]}" -gt 0
+          gh release create "$GITHUB_REF_NAME" "${files[@]}" \
+            --title "WorkBuddy Dream Skin $GITHUB_REF_NAME" \
+            --generate-notes

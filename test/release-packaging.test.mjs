@@ -74,7 +74,7 @@ test('release metadata stays aligned with the package version', async () => {
     read('.github/workflows/release.yml'),
   ]);
   const { version } = JSON.parse(pkgSource);
-  assert.equal(version, '0.6.0');
+  assert.equal(version, '0.6.1');
   assert.match(renderer, new RegExp(`VERSION = '${version.replaceAll('.', '\\.')}'`));
   assert.match(iss, new RegExp(`#define AppVersion "${version.replaceAll('.', '\\.')}"`));
   assert.match(plist, new RegExp(`<string>${version.replaceAll('.', '\\.')}<\\/string>`));
