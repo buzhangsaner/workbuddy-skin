@@ -55,6 +55,13 @@ function validateManifest(input) {
     if (typeof colors[key] !== 'string' || !COLOR_PATTERN.test(colors[key])) fail(`主题颜色 ${key} 不合法`);
     safeColors[key] = colors[key].toLowerCase();
   }
+  let presentation;
+  if (input.presentation != null) {
+    if (!input.presentation || typeof input.presentation !== 'object' || Array.isArray(input.presentation)) fail('主题 presentation 无效');
+    if (!['cover', 'contain'].includes(input.presentation.fit)) fail('主题图片适配方式无效');
+    if (!['left center', 'center center', 'right center'].includes(input.presentation.position)) fail('主题图片位置无效');
+    presentation = { fit: input.presentation.fit, position: input.presentation.position };
+  }
   return {
     schemaVersion: 1,
     id: input.id,
@@ -63,6 +70,7 @@ function validateManifest(input) {
     quote: cleanText(input.quote, '主题眉题', 120),
     image: input.image,
     colors: safeColors,
+    ...(presentation ? { presentation } : {}),
   };
 }
 

@@ -96,7 +96,9 @@ function registerIpc() {
       properties: ['openFile'],
       filters: [{ name: '图片', extensions: ['png', 'jpg', 'jpeg', 'webp'] }],
     });
-    return picked.canceled || !picked.filePaths?.[0] ? { canceled: true } : { path: picked.filePaths[0], name: path.basename(picked.filePaths[0]) };
+    return picked.canceled || !picked.filePaths?.[0]
+      ? { canceled: true }
+      : { path: picked.filePaths[0], name: path.basename(picked.filePaths[0]), previewUrl: pathToFileURL(picked.filePaths[0]).toString() };
   });
   ipcMain.handle('manager:design', (_event, payload) => service.designTheme(payload));
   ipcMain.handle('manager:delete', async (_event, id) => {

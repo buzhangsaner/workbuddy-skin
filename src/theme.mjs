@@ -6,6 +6,7 @@ const TOP_LEVEL_KEYS = new Set([
   'quote',
   'image',
   'colors',
+  'presentation',
 ]);
 const COLOR_KEYS = ['accent', 'secondary', 'surface', 'ink'];
 const HEX_COLOR = /^#[0-9a-f]{6}$/i;
@@ -42,6 +43,12 @@ export function validateTheme(input) {
   if (colorKeys.join(',') !== [...COLOR_KEYS].sort().join(',')) throw new Error('colors has unknown or missing fields');
   for (const key of COLOR_KEYS) {
     if (typeof theme.colors[key] !== 'string' || !HEX_COLOR.test(theme.colors[key])) throw new Error(`${key} is invalid`);
+  }
+  if (theme.presentation != null) {
+    if (!theme.presentation || typeof theme.presentation !== 'object' || Array.isArray(theme.presentation)) throw new Error('presentation must be an object');
+    if (Object.keys(theme.presentation).sort().join(',') !== 'fit,position') throw new Error('presentation has unknown or missing fields');
+    if (!['cover', 'contain'].includes(theme.presentation.fit)) throw new Error('presentation.fit is invalid');
+    if (!['left center', 'center center', 'right center'].includes(theme.presentation.position)) throw new Error('presentation.position is invalid');
   }
   return theme;
 }

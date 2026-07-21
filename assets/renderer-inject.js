@@ -155,6 +155,10 @@
     if (!chrome) return;
     const art = chrome.querySelector('.wb-dream-hero-art');
     if (art && art.src !== theme.imageUrl) art.src = theme.imageUrl;
+    if (art) {
+      art.style.objectFit = theme.presentation?.fit || '';
+      art.style.objectPosition = theme.presentation?.position || '';
+    }
     const name = chrome.querySelector('.wb-dream-copy strong');
     const tagline = chrome.querySelector('.wb-dream-copy span');
     const badge = chrome.querySelector('.wb-dream-badge');

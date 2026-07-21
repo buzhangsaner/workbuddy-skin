@@ -72,10 +72,9 @@ function createService(options = {}) {
   }
 
   async function designTheme(payload) {
-    validateDesignPayload(payload);
-    let custom;
-    try { custom = require('./custom-theme.cjs'); } catch { throw new Error('自定义主题设计功能尚未安装'); }
-    return custom.createCustomTheme({ ...payload, userThemesRoot: store.userThemesRoot });
+    const safePayload = validateDesignPayload(payload);
+    const custom = require('./custom-theme.cjs');
+    return custom.createCustomTheme({ ...safePayload, userThemesRoot: store.userThemesRoot });
   }
 
   return { status, applyTheme, restore, importTheme, exportTheme, deleteTheme, resolveThemeAsset, designTheme, store, runtime };

@@ -133,7 +133,7 @@ button:disabled { cursor: wait; opacity: .5; }
 .dialog-head { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
 .dialog-head h2 { font-size: 32px; }
 .designer-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; padding: 24px 0; }
-.designer-preview { min-height: 420px; display: flex; align-items: flex-end; padding: 28px; color: var(--preview-ink, #24201b); background: radial-gradient(circle at 78% 18%, var(--preview-accent, #c44732), transparent 32%), var(--preview-surface, #f5efe4); border: 1px solid var(--line); }
+.designer-preview { min-height: 420px; display: flex; align-items: flex-end; padding: 28px; color: var(--preview-ink, #24201b); background-color: var(--preview-surface, #f5efe4); background-image: linear-gradient(90deg, color-mix(in srgb, var(--preview-surface, #f5efe4) 92%, transparent), transparent 72%), var(--preview-wallpaper, radial-gradient(circle at 78% 18%, var(--preview-accent, #c44732), transparent 32%)); background-repeat: no-repeat; background-size: cover; background-position: right center; border: 1px solid var(--line); }
 .preview-copy { display: grid; gap: 8px; }
 .preview-copy span { font: 700 11px ui-monospace, monospace; letter-spacing: .18em; }
 .preview-copy strong { max-width: 12ch; font: 700 40px/1.1 "STSong", Georgia, serif; }

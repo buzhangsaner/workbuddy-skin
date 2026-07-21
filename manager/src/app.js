@@ -155,6 +155,13 @@ byId('chooseWallpaper').addEventListener('click', async () => {
     if (result?.path) {
       byId('wallpaperPath').value = result.path;
       byId('wallpaperName').textContent = result.name || '已选择背景图';
+      const preview = byId('designerPreview');
+      if (result.previewUrl) {
+        const wallpaper = `url(${JSON.stringify(result.previewUrl)})`;
+        preview.style.setProperty('--preview-wallpaper', wallpaper);
+        preview.style.backgroundImage = `linear-gradient(90deg, color-mix(in srgb, var(--preview-surface) 92%, transparent), transparent 72%), ${wallpaper}`;
+      }
+      updateDesignerPreview();
     }
   } catch (error) { showToast(errorMessage(error), 'error'); }
 });
@@ -164,6 +171,8 @@ function updateDesignerPreview() {
   preview.style.setProperty('--preview-accent', byId('customAccent').value);
   preview.style.setProperty('--preview-surface', byId('customSurface').value);
   preview.style.setProperty('--preview-ink', byId('customInk').value);
+  preview.style.backgroundSize = byId('customFit').value;
+  preview.style.backgroundPosition = byId('customPosition').value;
   byId('previewTitle').textContent = byId('customName').value || '我的自定义主题';
   byId('previewQuote').textContent = byId('customQuote').value || 'MY WORKBUDDY';
 }
