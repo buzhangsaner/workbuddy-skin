@@ -32,14 +32,16 @@ test('renderer builds untrusted theme content with text nodes instead of HTML in
   assert.match(app, /showToast/);
 });
 
-test('specimen archive styling is responsive, keyboard visible, and motion safe', async () => {
+test('manager uses a stable uniform card grid with responsive and accessible controls', async () => {
   const css = await read('manager/src/styles.css');
   assert.match(css, /--paper:/);
   assert.match(css, /--vermilion:/);
-  assert.match(css, /grid-template-columns:\s*repeat\(12/);
+  assert.match(css, /grid-template-columns:\s*repeat\(auto-fit,\s*minmax\(320px,\s*1fr\)\)/);
+  assert.match(css, /\.theme-media[^}]*aspect-ratio:\s*16\s*\/\s*9/s);
   assert.match(css, /:focus-visible/);
   assert.match(css, /@media\s*\(max-width:\s*900px\)/);
+  assert.match(css, /@media\s*\(max-width:\s*900px\)[\s\S]*\.collection-head\s*>\s*strong[^}]*grid-row:\s*1/);
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
-  assert.match(css, /\.theme-card:nth-child\(3n\s*\+\s*1\)/);
+  assert.doesNotMatch(css, /\.theme-card:nth-child/);
   assert.match(css, /\.grain/);
 });
