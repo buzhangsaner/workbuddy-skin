@@ -2,6 +2,8 @@ node_modules/
 qa-themes/
 runtime/
 dist/
+dist-manager/
+docs/screenshots/
 *.log
 .DS_Store
 Thumbs.db

@@ -24,14 +24,18 @@
 
 它通过 WorkBuddy 自带的本机调试接口注入样式，不修改 `app.asar`，随时可以完整恢复原版。
 
-## 一键安装（推荐）
+## 一键使用（推荐）
 
-打开 [GitHub Releases](https://github.com/buzhangsaner/workbuddy-skin/releases/latest) 下载对应系统安装包：
+打开 [GitHub Releases](https://github.com/buzhangsaner/workbuddy-skin/releases/latest) 下载皮肤管理器，全程可视化操作，无需命令行：
 
-- Windows：双击 `WorkBuddy-Dream-Skin-Setup.exe`，安装完成后自动启动。
-- macOS：打开 `WorkBuddy-Dream-Skin.dmg`，再双击 `WorkBuddy Dream Skin Installer.app`。
+- Windows 免安装版：双击 `WorkBuddy-Skin-Manager-Portable-0.6.0-x64.exe`。
+- Windows 安装版：双击 `WorkBuddy-Skin-Manager-Setup-0.6.0-x64.exe`。
+- macOS Intel：打开 `WorkBuddy-Skin-Manager-0.6.0-x64.dmg`，将应用拖入“应用程序”后打开。
+- macOS Apple Silicon：打开 `WorkBuddy-Skin-Manager-0.6.0-arm64.dmg`，将应用拖入“应用程序”后打开。
 
-Release 安装包已内置 Node.js，无需配置 PowerShell、Terminal 或自行安装 Node。未签名的 macOS 首次打开如果被系统拦截，请右键安装器选择“打开”；配置 Apple Developer 签名后可消除该提示。
+打开管理器后，直接在主题卡片上点击“使用此主题”；顶部可以导入安全的 `.wbskin` 主题包，也可以进入“设计主题”实时编辑背景图、颜色和标题。管理器已内置运行环境，无需配置 PowerShell、Terminal 或自行安装 Node。未签名的 macOS 首次打开如果被系统拦截，请右键应用选择“打开”。
+
+原有的 `WorkBuddy-Dream-Skin-Setup.exe` 与 `WorkBuddy-Dream-Skin.dmg` 继续保留，适合只使用内置切换栏的用户。
 
 ## 内置主题
 

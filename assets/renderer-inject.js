@@ -8,7 +8,7 @@
   const CUSTOM_STORAGE_KEY = 'workbuddy-dream-custom-theme-v1';
   const SWITCHER_COLLAPSED_KEY = 'workbuddy-dream-switcher-collapsed-v1';
   const GITHUB_URL = 'https://github.com/buzhangsaner/workbuddy-skin/';
-  const VERSION = '0.5.1';
+  const VERSION = '0.6.0';
   const NATIVE_ID = 'native';
   const CUSTOM_ID = 'custom';
   const themeMap = new Map(themes.map(theme => [theme.id, theme]));

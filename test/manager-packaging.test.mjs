@@ -22,6 +22,9 @@ test('electron-builder packages the manager and existing safe injector resources
   }
   assert.deepEqual(pkg.build.win.target, ['nsis', 'portable']);
   assert.deepEqual(pkg.build.mac.target, ['dmg']);
+  for (const pattern of ['assets/**/*', 'src/**/*', 'scripts/**/*', 'themes/**/*']) {
+    assert.ok(pkg.build.asarUnpack.includes(pattern), `missing unpacked runtime pattern ${pattern}`);
+  }
   assert.equal(pkg.build.nsis.oneClick, false);
   assert.equal(pkg.build.nsis.allowToChangeInstallationDirectory, true);
 });

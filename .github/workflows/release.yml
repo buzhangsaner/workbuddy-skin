@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
+      - run: npm ci
       - run: npm test
       - run: npm run check
 
@@ -28,6 +30,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
+      - run: npm ci
       - name: Bundle Node.js runtime
         shell: pwsh
         run: |
@@ -38,12 +42,16 @@ jobs:
       - name: Build Windows installer
         shell: pwsh
         run: |
-          $Version = if ($env:GITHUB_REF -like 'refs/tags/*') { "${{ github.ref_name }}".TrimStart('v') } else { '0.5.1' }
+          $Version = if ($env:GITHUB_REF -like 'refs/tags/*') { "${{ github.ref_name }}".TrimStart('v') } else { '0.6.0' }
           & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DAppVersion=$Version" packaging/windows/workbuddy-dream-skin.iss
+      - name: Build Windows skin manager
+        run: npm run manager:dist:win
       - uses: actions/upload-artifact@v4
         with:
           name: windows-installer
-          path: dist/WorkBuddy-Dream-Skin-Setup.exe
+          path: |
+            dist/WorkBuddy-Dream-Skin-Setup.exe
+            dist-manager/*.exe
 
   macos:
     needs: test
@@ -53,6 +61,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
+      - run: npm ci
       - name: Bundle Node.js runtime
         shell: bash
         run: |
@@ -63,10 +73,16 @@ jobs:
           chmod +x runtime/node packaging/macos/*.sh
       - name: Build macOS DMG
         run: ./packaging/macos/build-dmg.sh
+      - name: Build macOS skin manager
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+        run: npm run manager:dist:mac
       - uses: actions/upload-artifact@v4
         with:
           name: macos-installer
-          path: dist/WorkBuddy-Dream-Skin.dmg
+          path: |
+            dist/WorkBuddy-Dream-Skin.dmg
+            dist-manager/*.dmg
 
   release:
     if: startsWith(github.ref, 'refs/tags/')

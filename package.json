@@ -1,6 +1,9 @@
 {
   "name": "workbuddy-dream-skin",
-  "version": "0.5.1",
+  "version": "0.6.0",
+  "description": "Unofficial script-free skin manager and theme collection for WorkBuddy",
+  "author": "buzhangsaner",
+  "homepage": "https://github.com/buzhangsaner/workbuddy-skin",
   "private": true,
   "type": "module",
   "main": "manager/electron/main.cjs",
@@ -9,7 +12,7 @@
     "check": "node --check scripts/injector.mjs && node --check assets/renderer-inject.js && node --check manager/electron/main.cjs && node --check manager/src/app.js",
     "manager:start": "electron .",
     "manager:dist:win": "electron-builder --win --x64 -p never",
-    "manager:dist:mac": "electron-builder --mac -p never"
+    "manager:dist:mac": "electron-builder --mac --x64 --arm64 -p never"
   },
   "engines": {
     "node": ">=22"
@@ -36,12 +39,13 @@
       "package.json"
     ],
     "asarUnpack": [
+      "assets/**/*",
+      "src/**/*",
       "scripts/**/*",
       "themes/**/*"
     ],
     "win": {
-      "target": ["nsis", "portable"],
-      "artifactName": "WorkBuddy-Skin-Manager-${version}-${arch}.${ext}"
+      "target": ["nsis", "portable"]
     },
     "mac": {
       "category": "public.app-category.utilities",
@@ -50,7 +54,11 @@
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "WorkBuddy-Skin-Manager-Setup-${version}-${arch}.${ext}"
+    },
+    "portable": {
+      "artifactName": "WorkBuddy-Skin-Manager-Portable-${version}-${arch}.${ext}"
     }
   }
 }
