@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "mecha-alert",
+  "name": "机甲警戒",
+  "tagline": "启动核心，让复杂任务有序运转",
+  "quote": "SYSTEM READY",
+  "image": "hero-clean-v1.png",
+  "colors": { "accent": "#d84a32", "secondary": "#f0b742", "surface": "#eceae6", "ink": "#211f1e" }
+}

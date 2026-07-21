@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "jade-immortal",
+  "name": "仙风翠玉",
+  "tagline": "云水入怀，灵感自成山河",
+  "quote": "JADE HORIZON",
+  "image": "hero-clean-v1.png",
+  "colors": { "accent": "#2f8b70", "secondary": "#d6b968", "surface": "#eef4ea", "ink": "#1f3028" }
+}

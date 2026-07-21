@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "ink-mountains",
+  "name": "墨韵山河",
+  "tagline": "留白见远，落笔成章",
+  "quote": "INK & SILENCE",
+  "image": "hero-clean-v1.png",
+  "colors": { "accent": "#425f54", "secondary": "#b48b52", "surface": "#f2efe5", "ink": "#242823" }
+}

@@ -9,12 +9,14 @@ const expected = [
   'pink-custom', 'fortune-worker', 'red-white-sci-fi', 'sage-clear',
   'inspiration-universe', 'purple-night', 'miku-future', 'black-gold-stage',
   'people-intelligence',
+  'cyber-neon', 'jade-immortal', 'aurora-wasteland', 'mecha-alert',
+  'ink-mountains', 'sea-salt-glass',
 ];
 
-test('catalog exposes all nine built-in skin sets', async () => {
+test('catalog exposes all fifteen built-in skin sets', async () => {
   const catalog = JSON.parse(await read('themes/catalog.json'));
   assert.deepEqual(catalog.map(item => item.id), expected);
-  assert.equal(new Set(catalog.map(item => item.name)).size, 9);
+  assert.equal(new Set(catalog.map(item => item.name)).size, 15);
 });
 
 test('every catalog theme is valid and references a clean local hero', async () => {

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "aurora-wasteland",
+  "name": "极光废土",
+  "tagline": "在寂静地平线，点亮下一步",
+  "quote": "AURORA FRONTIER",
+  "image": "hero-clean-v1.png",
+  "colors": { "accent": "#4db9c6", "secondary": "#f0a75e", "surface": "#e9f1ee", "ink": "#243038" }
+}

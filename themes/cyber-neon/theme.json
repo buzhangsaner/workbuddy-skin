@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "cyber-neon",
+  "name": "赛博霓虹",
+  "tagline": "让思路穿过霓虹，抵达未来",
+  "quote": "NEON FLOW",
+  "image": "hero-clean-v1.png",
+  "colors": { "accent": "#ff3b8d", "secondary": "#24d7e8", "surface": "#f7f2fb", "ink": "#21162b" }
+}

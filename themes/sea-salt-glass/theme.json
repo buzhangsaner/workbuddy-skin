@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "sea-salt-glass",
+  "name": "海盐玻璃",
+  "tagline": "把清澈留给思考，把轻盈交给创造",
+  "quote": "CLEAR TIDE",
+  "image": "hero-clean-v1.png",
+  "colors": { "accent": "#2f91a8", "secondary": "#e6b6a7", "surface": "#edf7f7", "ink": "#18343a" }
+}

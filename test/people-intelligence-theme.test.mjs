@@ -47,13 +47,13 @@ test('people-intelligence changes visuals without theme-specific structure code'
   ]) assert.ok(declarations.includes(selector), `missing visual coverage for ${selector}`);
 });
 
-test('documentation and desktop picker include the ninth built-in theme', async () => {
+test('documentation and desktop picker include all built-in themes', async () => {
   const [readme, picker] = await Promise.all([
     read('README.md'),
     read('scripts/switch-workbuddy-theme.ps1'),
   ]);
-  assert.match(readme, /9 套内置视觉方案/);
+  assert.match(readme, /15 套内置视觉方案/);
   assert.match(readme, /\| 人民智造 \| 宣纸、朱红、鎏金山河 \|/);
-  assert.match(readme, /11 个胶囊按钮/);
-  assert.match(picker, /Select one of the nine Codex Dream Skin themes:/);
+  assert.match(readme, /17 个胶囊按钮/);
+  assert.match(picker, /Select one of the fifteen Codex Dream Skin themes:/);
 });

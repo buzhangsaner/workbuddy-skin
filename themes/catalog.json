@@ -7,5 +7,11 @@
   { "id": "purple-night", "name": "紫夜限定", "description": "深蓝星河与霓虹蝴蝶" },
   { "id": "miku-future", "name": "初音未来", "description": "青色音浪与梦幻粉蓝" },
   { "id": "black-gold-stage", "name": "舞台黑金", "description": "深黑玻璃与香槟金光" },
-  { "id": "people-intelligence", "name": "人民智造", "description": "宣纸朱红、鎏金山河与时代画卷" }
+  { "id": "people-intelligence", "name": "人民智造", "description": "宣纸朱红、鎏金山河与时代画卷" },
+  { "id": "cyber-neon", "name": "赛博霓虹", "description": "深紫夜幕、青粉光轨与未来都市" },
+  { "id": "jade-immortal", "name": "仙风翠玉", "description": "翠玉群山、鎏金云气与澄明水境" },
+  { "id": "aurora-wasteland", "name": "极光废土", "description": "盐原极光、琥珀地平线与寂静荒野" },
+  { "id": "mecha-alert", "name": "机甲警戒", "description": "石墨机械、红色警戒与工业光影" },
+  { "id": "ink-mountains", "name": "墨韵山河", "description": "宣纸水墨、松烟远山与青金矿彩" },
+  { "id": "sea-salt-glass", "name": "海盐玻璃", "description": "海盐晶体、晨光粉蓝与通透玻璃" }
 ]

@@ -1667,6 +1667,118 @@ html[data-wb-dream-theme="people-intelligence"] .wb-dream-theme-chip {
   color: #fff4d2 !important;
 }
 
+/* 2026 原创扩展组：共用视觉覆盖，不新增或重排 WorkBuddy 结构。 */
+html[data-wb-dream-theme="cyber-neon"] .wb-dream-hero-art,
+html[data-wb-dream-theme="jade-immortal"] .wb-dream-hero-art,
+html[data-wb-dream-theme="aurora-wasteland"] .wb-dream-hero-art,
+html[data-wb-dream-theme="mecha-alert"] .wb-dream-hero-art,
+html[data-wb-dream-theme="ink-mountains"] .wb-dream-hero-art,
+html[data-wb-dream-theme="sea-salt-glass"] .wb-dream-hero-art {
+  object-position: 72% center;
+  opacity: .9;
+  filter: saturate(1.04) contrast(1.01);
+}
+
+html[data-wb-dream-theme="cyber-neon"] .wb-dream-hero::after,
+html[data-wb-dream-theme="jade-immortal"] .wb-dream-hero::after,
+html[data-wb-dream-theme="aurora-wasteland"] .wb-dream-hero::after,
+html[data-wb-dream-theme="mecha-alert"] .wb-dream-hero::after,
+html[data-wb-dream-theme="ink-mountains"] .wb-dream-hero::after,
+html[data-wb-dream-theme="sea-salt-glass"] .wb-dream-hero::after {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--wb-dream-surface) 98%, transparent) 0%, color-mix(in srgb, var(--wb-dream-surface) 82%, transparent) 24%, color-mix(in srgb, var(--wb-dream-surface) 14%, transparent) 58%, transparent 80%),
+    linear-gradient(0deg, color-mix(in srgb, var(--wb-dream-surface) 90%, transparent) 0%, color-mix(in srgb, var(--wb-dream-surface) 28%, transparent) 28%, transparent 58%);
+}
+
+html[data-wb-dream-theme="cyber-neon"] .conversation-sidebar,
+html[data-wb-dream-theme="cyber-neon"] .conversation-list,
+html[data-wb-dream-theme="jade-immortal"] .conversation-sidebar,
+html[data-wb-dream-theme="jade-immortal"] .conversation-list,
+html[data-wb-dream-theme="aurora-wasteland"] .conversation-sidebar,
+html[data-wb-dream-theme="aurora-wasteland"] .conversation-list,
+html[data-wb-dream-theme="mecha-alert"] .conversation-sidebar,
+html[data-wb-dream-theme="mecha-alert"] .conversation-list,
+html[data-wb-dream-theme="ink-mountains"] .conversation-sidebar,
+html[data-wb-dream-theme="ink-mountains"] .conversation-list,
+html[data-wb-dream-theme="sea-salt-glass"] .conversation-sidebar,
+html[data-wb-dream-theme="sea-salt-glass"] .conversation-list {
+  --wb-todo-menu-text-default: var(--wb-dream-ink) !important;
+  --wb-todo-menu-text-heading: color-mix(in srgb, var(--wb-dream-ink) 68%, transparent) !important;
+  border-color: color-mix(in srgb, var(--wb-dream-accent) 20%, transparent) !important;
+  background: color-mix(in srgb, var(--wb-dream-surface) 94%, transparent) !important;
+  color: var(--wb-dream-ink) !important;
+  box-shadow: inset -1px 0 color-mix(in srgb, var(--wb-dream-secondary) 24%, transparent) !important;
+  backdrop-filter: blur(18px) saturate(1.06);
+}
+
+html[data-wb-dream-theme="cyber-neon"] .main-content--welcome,
+html[data-wb-dream-theme="cyber-neon"] .main-content--projects,
+html[data-wb-dream-theme="jade-immortal"] .main-content--welcome,
+html[data-wb-dream-theme="jade-immortal"] .main-content--projects,
+html[data-wb-dream-theme="aurora-wasteland"] .main-content--welcome,
+html[data-wb-dream-theme="aurora-wasteland"] .main-content--projects,
+html[data-wb-dream-theme="mecha-alert"] .main-content--welcome,
+html[data-wb-dream-theme="mecha-alert"] .main-content--projects,
+html[data-wb-dream-theme="ink-mountains"] .main-content--welcome,
+html[data-wb-dream-theme="ink-mountains"] .main-content--projects,
+html[data-wb-dream-theme="sea-salt-glass"] .main-content--welcome,
+html[data-wb-dream-theme="sea-salt-glass"] .main-content--projects {
+  background: linear-gradient(145deg, color-mix(in srgb, var(--wb-dream-surface) 90%, transparent), color-mix(in srgb, white 46%, transparent)) !important;
+  color: var(--wb-dream-ink) !important;
+  backdrop-filter: blur(12px) saturate(1.03);
+}
+
+html[data-wb-dream-theme="cyber-neon"] .quick-actions__item,
+html[data-wb-dream-theme="cyber-neon"] .project-grid__card,
+html[data-wb-dream-theme="jade-immortal"] .quick-actions__item,
+html[data-wb-dream-theme="jade-immortal"] .project-grid__card,
+html[data-wb-dream-theme="aurora-wasteland"] .quick-actions__item,
+html[data-wb-dream-theme="aurora-wasteland"] .project-grid__card,
+html[data-wb-dream-theme="mecha-alert"] .quick-actions__item,
+html[data-wb-dream-theme="mecha-alert"] .project-grid__card,
+html[data-wb-dream-theme="ink-mountains"] .quick-actions__item,
+html[data-wb-dream-theme="ink-mountains"] .project-grid__card,
+html[data-wb-dream-theme="sea-salt-glass"] .quick-actions__item,
+html[data-wb-dream-theme="sea-salt-glass"] .project-grid__card {
+  border-color: color-mix(in srgb, var(--wb-dream-accent) 28%, transparent) !important;
+  background: color-mix(in srgb, var(--wb-dream-surface) 88%, transparent) !important;
+  color: var(--wb-dream-ink) !important;
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--wb-dream-accent) 15%, transparent), inset 0 1px rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(16px) saturate(1.05);
+}
+
+html[data-wb-dream-theme="cyber-neon"] .wb-home-composer__input-slot [class*="_container_"],
+html[data-wb-dream-theme="cyber-neon"][data-wb-dream-route="chat"] .main-content--chat,
+html[data-wb-dream-theme="jade-immortal"] .wb-home-composer__input-slot [class*="_container_"],
+html[data-wb-dream-theme="jade-immortal"][data-wb-dream-route="chat"] .main-content--chat,
+html[data-wb-dream-theme="aurora-wasteland"] .wb-home-composer__input-slot [class*="_container_"],
+html[data-wb-dream-theme="aurora-wasteland"][data-wb-dream-route="chat"] .main-content--chat,
+html[data-wb-dream-theme="mecha-alert"] .wb-home-composer__input-slot [class*="_container_"],
+html[data-wb-dream-theme="mecha-alert"][data-wb-dream-route="chat"] .main-content--chat,
+html[data-wb-dream-theme="ink-mountains"] .wb-home-composer__input-slot [class*="_container_"],
+html[data-wb-dream-theme="ink-mountains"][data-wb-dream-route="chat"] .main-content--chat,
+html[data-wb-dream-theme="sea-salt-glass"] .wb-home-composer__input-slot [class*="_container_"],
+html[data-wb-dream-theme="sea-salt-glass"][data-wb-dream-route="chat"] .main-content--chat {
+  border-color: color-mix(in srgb, var(--wb-dream-accent) 30%, transparent) !important;
+  background: color-mix(in srgb, var(--wb-dream-surface) 91%, transparent) !important;
+  color: var(--wb-dream-ink) !important;
+  box-shadow: 0 16px 38px color-mix(in srgb, var(--wb-dream-accent) 14%, transparent) !important;
+  backdrop-filter: blur(20px) saturate(1.06);
+}
+
+html[data-wb-dream-theme="cyber-neon"] .wb-dream-switcher,
+html[data-wb-dream-theme="mecha-alert"] .wb-dream-switcher {
+  border-color: color-mix(in srgb, var(--wb-dream-secondary) 50%, transparent) !important;
+  background: rgba(24,18,30,.94) !important;
+  box-shadow: 0 14px 38px rgba(9,6,14,.38) !important;
+}
+
+html[data-wb-dream-theme="cyber-neon"] .wb-dream-theme-chip,
+html[data-wb-dream-theme="mecha-alert"] .wb-dream-theme-chip {
+  border-color: color-mix(in srgb, var(--wb-dream-secondary) 28%, transparent) !important;
+  color: #fff8f1 !important;
+}
+
 @keyframes wb-dream-float {
   from { transform: translate3d(0, -5px, 0) scale(.98); }
   to { transform: translate3d(-10px, 12px, 0) scale(1.04); }
