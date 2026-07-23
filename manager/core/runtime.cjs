@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const fsp = require('node:fs/promises');
+const os = require('node:os');
 const path = require('node:path');
 const childProcess = require('node:child_process');
 const { promisify } = require('node:util');
@@ -17,10 +18,11 @@ function validatePort(value) {
   return value;
 }
 
-function findWorkBuddyExecutable({ platform = process.platform, env = process.env, exists = fs.existsSync } = {}) {
+function findWorkBuddyExecutable({ platform = process.platform, env = process.env, home = os.homedir(), exists = fs.existsSync } = {}) {
   const candidates = [];
   if (platform === 'win32') {
     if (env.LOCALAPPDATA) candidates.push(path.join(env.LOCALAPPDATA, 'Programs', 'WorkBuddy', 'WorkBuddy.exe'));
+    if (home) candidates.push(path.join(home, 'AppData', 'Local', 'Programs', 'WorkBuddy', 'WorkBuddy.exe'));
     if (env.ProgramFiles) candidates.push(path.join(env.ProgramFiles, 'WorkBuddy', 'WorkBuddy.exe'));
   } else if (platform === 'darwin') {
     candidates.push('/Applications/WorkBuddy.app/Contents/MacOS/WorkBuddy');

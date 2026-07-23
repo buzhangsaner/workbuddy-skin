@@ -89,3 +89,13 @@ test('finds only supported WorkBuddy executable locations', () => {
   assert.equal(findWorkBuddyExecutable({ platform: 'darwin', env: {}, exists }), '/Applications/WorkBuddy.app/Contents/MacOS/WorkBuddy');
   assert.equal(findWorkBuddyExecutable({ platform: 'linux', env: {}, exists: () => false }), null);
 });
+
+test('falls back to the Windows user profile when LOCALAPPDATA is missing or stale', () => {
+  const home = 'C:\\Users\\Demo';
+  const expected = path.join(home, 'AppData', 'Local', 'Programs', 'WorkBuddy', 'WorkBuddy.exe');
+  const exists = candidate => candidate === expected;
+  assert.equal(
+    findWorkBuddyExecutable({ platform: 'win32', env: { LOCALAPPDATA: 'Z:\\Missing' }, home, exists }),
+    expected,
+  );
+});

@@ -31,7 +31,7 @@ function setBusy(active, message = '正在处理…') {
 function errorMessage(error) {
   const code = error?.code || '';
   if (code === 'DEBUG_PORT_NOT_READY' || /调试端口/.test(error?.message || '')) return 'WorkBuddy 需要通过管理器重新启动后才能换肤。';
-  if (code === 'WORKBUDDY_NOT_FOUND') return '没有找到 WorkBuddy，请先从官方渠道安装。';
+  if (code === 'WORKBUDDY_NOT_FOUND' || /未找到 WorkBuddy/.test(error?.message || '')) return '没有找到 WorkBuddy，请确认客户端已安装后重试。';
   if (/主题包|不安全|路径|JavaScript/i.test(error?.message || '')) return `主题包被安全检查拒绝：${error.message}`;
   return error?.message || '操作失败，请重试。';
 }

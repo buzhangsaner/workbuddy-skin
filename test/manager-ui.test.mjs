@@ -45,3 +45,8 @@ test('manager uses a stable uniform card grid with responsive and accessible con
   assert.doesNotMatch(css, /\.theme-card:nth-child/);
   assert.match(css, /\.grain/);
 });
+
+test('manager converts serialized WorkBuddy path errors into a useful message', async () => {
+  const app = await read('manager/src/app.js');
+  assert.match(app, /\/未找到 WorkBuddy\/\.test\(error\?\.message/);
+});

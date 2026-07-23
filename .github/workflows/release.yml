@@ -42,7 +42,7 @@ jobs:
       - name: Build Windows installer
         shell: pwsh
         run: |
-          $Version = if ($env:GITHUB_REF -like 'refs/tags/*') { "${{ github.ref_name }}".TrimStart('v') } else { '0.6.1' }
+          $Version = if ($env:GITHUB_REF -like 'refs/tags/*') { "${{ github.ref_name }}".TrimStart('v') } else { '0.6.2' }
           & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DAppVersion=$Version" packaging/windows/workbuddy-dream-skin.iss
       - name: Build Windows skin manager
         run: npm run manager:dist:win
